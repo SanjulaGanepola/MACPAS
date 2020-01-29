@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">MACPAS</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="a_b_c_d">A B C D</string>
+    <string name="e_f_g_h">E F G H</string>
+    <string name="i_j_k_l_m_n">I J K L M N</string>
+    <string name="o_p_q_r_s_t">O P Q R S T</string>
+    <string name="start">START</string>
+    <string name="stop">STOP</string>
+    <string name="u_v_w_x_y_z">U V W X Y Z</string>
+    <string name="togglebutton">togglebutton</string>
+    <string name="clear">CLEAR</string>
+    <string name="speak">SPEAK</string>
+    <string name="go_back">go back</string>
+    <string name="yeet_we_take_those">YEET WE TAKE THOSE</string>
+</resources>
