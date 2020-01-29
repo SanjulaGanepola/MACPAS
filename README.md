@@ -16,7 +16,7 @@ Learning the new environment for developing android apps was a challenge at firs
 We were not only able to learn Android Studio in less than 48 hours, but we also created a functional app that meets the requirements given by Hotel Dieu Shaver.
 
 # What we learned
-As part of learning Andoird development, we learned about user experience, design,
+As part of learning Andoird development, we learned about user experience, and design.
 
 # What's next for MACPAS
 There are many future improvements in store such the addition of accounts, tutorial, device setup, and more.
