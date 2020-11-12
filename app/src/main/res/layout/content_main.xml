@@ -51,41 +51,37 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/button20"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/clear_img"
-                android:text="@string/clear"
-                android:textSize="23sp" />
+                android:contentDescription="CLEAR"
+                app:srcCompat="@drawable/clear_img" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/button21"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/hearing_img"
-                android:text="@string/speak"
-                android:textSize="23sp" />
+                android:contentDescription="SPEAK"
+                app:srcCompat="@drawable/hearing_img" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/button22"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/backspace_img"
-                android:text="BACK\nSPACE"
-                android:textSize="23sp" />
+                android:contentDescription="BACKSPACE"
+                app:srcCompat="@drawable/backspace_img" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/button23"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/spacebar_img"
-                android:text="SPACE"
-                android:textSize="23sp" />
+                android:contentDescription="SPACE"
+                app:srcCompat="@drawable/spacebar_img" />
         </LinearLayout>
 
         <Button
@@ -94,6 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/a_b_c_d"
+            android:contentDescription="a"
             android:textSize="40sp" />
 
         <Button
@@ -102,6 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/e_f_g_h"
+            android:contentDescription="e"
             android:textSize="40sp" />
 
         <Button
@@ -110,6 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/i_j_k_l_m_n"
+            android:contentDescription="i"
             android:textSize="40sp" />
 
         <Button
@@ -118,6 +117,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/o_p_q_r_s_t"
+            android:contentDescription="o"
             android:textSize="40sp" />
 
         <Button
@@ -126,6 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/u_v_w_x_y_z"
+            android:contentDescription="u"
             android:textSize="40sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -52,7 +52,11 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="I"
-                    android:textSize="100sp" />
+                    android:contentDescription="i"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeMaxTextSize="100sp"
+                    app:autoSizeStepGranularity="1sp" />
 
                 <Button
                     android:id="@+id/button5"
@@ -60,7 +64,11 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="J"
-                    android:textSize="100sp" />
+                    android:contentDescription="j"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeMaxTextSize="100sp"
+                    app:autoSizeStepGranularity="1sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -75,7 +83,11 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="K"
-                    android:textSize="100sp" />
+                    android:contentDescription="k"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeMaxTextSize="100sp"
+                    app:autoSizeStepGranularity="1sp" />
 
                 <Button
                     android:id="@+id/button3"
@@ -83,7 +95,11 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="L"
-                    android:textSize="100sp" />
+                    android:contentDescription="l"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeMaxTextSize="100sp"
+                    app:autoSizeStepGranularity="1sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -98,7 +114,11 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="M"
-                    android:textSize="100sp" />
+                    android:contentDescription="m"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeMaxTextSize="100sp"
+                    app:autoSizeStepGranularity="1sp" />
 
                 <Button
                     android:id="@+id/button9"
@@ -106,7 +126,11 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="N"
-                    android:textSize="100sp" />
+                    android:contentDescription="n"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeMaxTextSize="100sp"
+                    app:autoSizeStepGranularity="1sp" />
             </LinearLayout>
 
 
@@ -118,6 +142,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1.7"
             android:text="@string/go_back"
-            android:textSize="50sp" />
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="10sp"
+            app:autoSizeMaxTextSize="50sp"
+            app:autoSizeStepGranularity="1sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

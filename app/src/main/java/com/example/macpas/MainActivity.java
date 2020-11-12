@@ -24,6 +24,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -34,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonIJKLMN;
     private Button buttonOPQRST;
     private Button buttonUVWXYZ;
-    private Button backspace;
-    private Button space;
-    private Button clear;
-    private Button speak;
+    private ImageButton backspace;
+    private ImageButton space;
+    private ImageButton clear;
+    private ImageButton speak;
     private TextToSpeech mTTS;
     private TextView display;
     private AppBarConfiguration mAppBarConfiguration;
@@ -86,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        backspace = (Button) findViewById(R.id.button22);
-        space = (Button) findViewById(R.id.button23);
+        backspace = (ImageButton) findViewById(R.id.button22);
+        space = (ImageButton) findViewById(R.id.button23);
         display = (TextView) findViewById(R.id.textView4);
 
         Bundle extras = getIntent().getExtras();
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        clear = (Button) findViewById(R.id.button20);
+        clear = (ImageButton) findViewById(R.id.button20);
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        speak = findViewById(R.id.button21);
+        speak = (ImageButton) findViewById(R.id.button21);
         mTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
