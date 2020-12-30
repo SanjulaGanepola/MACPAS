@@ -29,6 +29,7 @@ import android.widget.TextView;
 
 import java.util.Locale;
 
+//MACPAS v1.0.1
 public class MainActivity extends AppCompatActivity {
     private Button buttonABCD;
     private Button buttonEFGH;
