@@ -10,7 +10,7 @@
         android:id="@+id/textView3"
         android:layout_width="268dp"
         android:layout_height="36dp"
-        android:text="About MacPas"
+        android:text="About MacPas: Four enthusiatic members getting together building this APP for ALS patient~"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp" />
 
