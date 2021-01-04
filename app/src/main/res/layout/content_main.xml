@@ -32,20 +32,25 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3.4"
                 android:cursorVisible="false"
-                android:gravity="center_vertical|right"
+                android:gravity="center_vertical|left"
                 android:hint="SELECT LETTER"
                 android:includeFontPadding="true"
                 android:paddingLeft="10sp"
-                android:textAlignment="textStart"
                 android:textAllCaps="true"
-                android:textSize="40sp" />
+                android:textSize = "40sp"
+                />
 
             <Button
                 android:id="@+id/button12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3.4"
-                android:text="SCAN" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="20"
+                android:maxLines="1"
+                android:text="SCAN"
+                app:autoSizeMaxTextSize="20sp"
+                app:autoSizeMinTextSize="10sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform" />
 
         </LinearLayout>
 
