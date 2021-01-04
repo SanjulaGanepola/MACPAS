@@ -1,0 +1,7 @@
+Commands:
+git pull                 -> pull any changes from github (website)
+git status               -> see if your files are different from github
+git add *                -> stages all the changes 
+git commit -m "COMMENT"  -> commit all staged changes (Write sth in comment~)
+git push                 -> push the commits to github
+git status               -> check if it's updated~
