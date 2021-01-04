@@ -1,11 +1,14 @@
 package com.example.macpas;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -43,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private TextToSpeech mTTS;
     private TextView display;
     private AppBarConfiguration mAppBarConfiguration;
+
+    private Button buttonScan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +91,57 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openUVWXYZ();
+            }
+        });
+
+        buttonScan = (Button) findViewById(R.id.button12);
+        buttonScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ViewGroup layout = (ViewGroup)findViewById(R.id.layout_middle);
+                for (int i = 0; i < layout.getChildCount(); i++) {
+                    View child = layout.getChildAt(i);
+                    if(child instanceof Button) {
+                        final Button b = (Button) child;
+
+                        new CountDownTimer(2000, 1000) {
+
+                            public void onTick(long millisUntilFinished) {
+                            }
+
+                            public void onFinish() {
+                                b.setBackgroundColor(Color.BLUE);
+                            }
+                        }.start();
+
+                    }
+
+
+
+                    /*
+                    if(childlayout.getId() == R.id.layout_top) {
+                        continue;
+                    }
+
+
+                    for (int j = 0; j < childlayout.getChildCount(); j++) {
+                        View button = childlayout.getChildAt(j);
+
+                        if( button instanceof Button) {
+                            final Button b = (Button) button;
+
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    b.setBackgroundColor(Color.BLUE);
+                                }
+                            }, 2000);
+
+                        }
+                    }
+                     */
+                }
             }
         });
 
