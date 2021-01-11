@@ -33,7 +33,7 @@ import android.widget.TextView;
 
 import java.util.Locale;
 
-//MACPAS v1.0.1
+//MACPAS v1.1.0
 public class MainActivity extends AppCompatActivity {
     private Button buttonABCD;
     private Button buttonEFGH;
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                 if(scanning == false) {
                     //buttonScan.setText("SELECT");
                     scanning = true;
-                    timer = new CountDownTimer(18000, 2000) {
+                    timer = new CountDownTimer(9000, 1000) {
                         public void onFinish() {
                             // When timer is finished
                             // Execute your code here
@@ -223,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
                     }.start();
                 }
                 else{
+                    buttonScan.setEnabled(false);
                     timer.cancel();
                     //buttonScan.setText("SCAN");
                     int temp = current-1;
@@ -336,6 +337,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openClear() {
+        buttonScan.setEnabled(true);
         String str = display.getText().toString();
         if (str.length() >= 1) {
             str = "";
@@ -344,10 +346,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openSpeak() {
+        buttonScan.setEnabled(true);
         String text = display.getText().toString();
         mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
     public void openBackspace() {
+        buttonScan.setEnabled(true);
         String str = display.getText().toString();
         if (str.length() >= 1) {
             str = str.substring(0, str.length() - 1);
@@ -355,6 +359,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void openSpace() {
+        buttonScan.setEnabled(true);
         String str = display.getText().toString();
         if (str.length() >= 1) {
             str += " ";

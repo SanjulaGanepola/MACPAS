@@ -121,7 +121,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="CLEAR"
-                app:srcCompat="@drawable/clear_img" />
+                app:srcCompat="@drawable/clear_img"
+                />
 
             <ImageButton
                 android:id="@+id/button21"
@@ -129,7 +130,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="SPEAK"
-                app:srcCompat="@drawable/hearing_img" />
+                app:srcCompat="@drawable/hearing_img"
+
+                />
 
             <ImageButton
                 android:id="@+id/button22"
@@ -137,7 +140,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="BACKSPACE"
-                app:srcCompat="@drawable/backspace_img" />
+                app:srcCompat="@drawable/backspace_img"
+                />
 
             <ImageButton
                 android:id="@+id/button23"
@@ -145,7 +149,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="SPACE"
-                app:srcCompat="@drawable/spacebar_img" />
+                app:srcCompat="@drawable/spacebar_img"
+
+                />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
