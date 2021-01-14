@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +8,150 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/app_bar_main">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" android:id="@+id/content_frame"/>
+    <LinearLayout
+        android:id="@+id/layout_vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/layout_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:background="#FFFFFF"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3.4"
+                android:cursorVisible="false"
+                android:gravity="center_vertical|left"
+                android:hint="SELECT LETTER"
+                android:includeFontPadding="true"
+                android:paddingLeft="10sp"
+                android:textAllCaps="true"
+                android:textSize = "40sp"
+                />
+
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="20"
+                android:maxLines="1"
+                android:text="SCAN"
+                app:autoSizeMaxTextSize="20sp"
+                app:autoSizeMinTextSize="10sp"
+                app:autoSizeStepGranularity="1sp"
+                app:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_middle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="a"
+                android:text="@string/a_b_c_d"
+                android:textSize="40sp" />
+
+            <Button
+                android:id="@+id/button25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="e"
+                android:text="@string/e_f_g_h"
+                android:textSize="40sp" />
+
+            <Button
+                android:id="@+id/button26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="i"
+                android:text="@string/i_j_k_l_m_n"
+                android:textSize="40sp" />
+
+            <Button
+                android:id="@+id/button27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="o"
+                android:text="@string/o_p_q_r_s_t"
+                android:textSize="40sp" />
+
+            <Button
+                android:id="@+id/button28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="u"
+                android:text="@string/u_v_w_x_y_z"
+                android:textSize="40sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/button20"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="CLEAR"
+                app:srcCompat="@drawable/clear_img"
+                />
+
+            <ImageButton
+                android:id="@+id/button21"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="SPEAK"
+                app:srcCompat="@drawable/hearing_img"
+
+                />
+
+            <ImageButton
+                android:id="@+id/button22"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="BACKSPACE"
+                app:srcCompat="@drawable/backspace_img"
+                />
+
+            <ImageButton
+                android:id="@+id/button23"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="SPACE"
+                app:srcCompat="@drawable/spacebar_img"
+
+                />
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
