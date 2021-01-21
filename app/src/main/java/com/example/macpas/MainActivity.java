@@ -23,17 +23,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.Menu;
 
-//MACPAS v1.1.1
+//MACPAS v1.2.0
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    private AppBarConfiguration mAppBarConfiguration;
-
+    int speed = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if(extras != null) {
+            if (extras.containsKey("toHomeSpeed")) {
+                speed = extras.getInt("toHomeSpeed");
+            }
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 

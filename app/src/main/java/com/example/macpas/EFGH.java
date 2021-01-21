@@ -29,6 +29,7 @@ public class EFGH extends AppCompatActivity {
     private boolean scanning = false;
     private CountDownTimer timer;
     private TextToSpeech mTTS;
+    private int subSpeed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,8 @@ public class EFGH extends AppCompatActivity {
         if (extras != null) {
             value = extras.getString("display");
         }
+        subSpeed = extras.getInt("toSubSpeed");
+        extras.remove("toSubSpeed");
         subdisplay = (TextView) findViewById(R.id.textView2);
         subdisplay.setText(value);
 
@@ -116,6 +119,7 @@ public class EFGH extends AppCompatActivity {
             }
         });
         buttonScan = (Button) findViewById(R.id.button11);
+        buttonScan.setText(Integer.toString(subSpeed));
         buttonScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,7 +127,7 @@ public class EFGH extends AppCompatActivity {
                 if(scanning == false) {
                     //buttonScan.setText("SELECT");
                     scanning = true;
-                    timer = new CountDownTimer(5000, 1000) {
+                    timer = new CountDownTimer(5*subSpeed, subSpeed) {
                         public void onFinish() {
                             // When timer is finished
                             // Execute your code here
@@ -205,6 +209,7 @@ public class EFGH extends AppCompatActivity {
     public void openMain() {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("subdisplay",subdisplay.getText());
+        intent.putExtra("toHomeSpeed",subSpeed);
         startActivity(intent);
     }
 

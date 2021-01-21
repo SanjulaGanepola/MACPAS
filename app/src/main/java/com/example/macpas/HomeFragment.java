@@ -46,10 +46,14 @@ public class HomeFragment extends Fragment {
     private boolean scanning = false;
     private CountDownTimer timer;
     private View root;
+    private int homeSpeed;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.fragment_home, container, false);
+        Bundle extras = getActivity().getIntent().getExtras();
+
+        homeSpeed = ((MainActivity) getActivity()).speed;
         buttonABCD = (Button) root.findViewById(R.id.button24);
         buttonABCD.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,6 +175,7 @@ public class HomeFragment extends Fragment {
         display = (TextView) root.findViewById(R.id.textView4);
 
         buttonScan = (Button) root.findViewById(R.id.button12);
+        buttonScan.setText(Integer.toString(homeSpeed));
         buttonScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,7 +183,7 @@ public class HomeFragment extends Fragment {
                 if(scanning == false) {
                     //buttonScan.setText("SELECT");
                     scanning = true;
-                    timer = new CountDownTimer(9000, 1000) {
+                    timer = new CountDownTimer(9*homeSpeed, homeSpeed) {
                         public void onFinish() {
                             // When timer is finished
                             // Execute your code here
@@ -259,7 +264,7 @@ public class HomeFragment extends Fragment {
 
 
 
-        Bundle extras = getActivity().getIntent().getExtras();
+
         String value = "";
         if (extras != null) {
             value = extras.getString("subdisplay");
@@ -291,30 +296,35 @@ public class HomeFragment extends Fragment {
     public void openABCD() {
         Intent intent = new Intent(this.getActivity(), ABCD.class);
         intent.putExtra("display",display.getText());
+        intent.putExtra("toSubSpeed",homeSpeed);
         startActivity(intent);
     }
 
     public void openEFGH() {
         Intent intent = new Intent(this.getActivity(), EFGH.class);
         intent.putExtra("display",display.getText());
+        intent.putExtra("toSubSpeed",homeSpeed);
         startActivity(intent);
     }
 
     public void openIJKLMN() {
         Intent intent = new Intent(this.getActivity(), IJKLMN.class);
         intent.putExtra("display",display.getText());
+        intent.putExtra("toSubSpeed",homeSpeed);
         startActivity(intent);
     }
 
     public void openOPQRST() {
         Intent intent = new Intent(this.getActivity(), OPQRST.class);
         intent.putExtra("display",display.getText());
+        intent.putExtra("toSubSpeed",homeSpeed);
         startActivity(intent);
     }
 
     public void openUVWXYZ() {
         Intent intent = new Intent(this.getActivity(), UVWXYZ.class);
         intent.putExtra("display",display.getText());
+        intent.putExtra("toSubSpeed",homeSpeed);
         startActivity(intent);
     }
 

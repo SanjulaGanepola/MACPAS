@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/app_bar_main">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
 
     <LinearLayout
         android:id="@+id/layout_vertical"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/layout_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.4"
-            android:background="#FFFFFF"
-            android:orientation="horizontal">
+            android:background="#FFFFFF">
 
             <TextView
                 android:id="@+id/textView4"
@@ -37,8 +37,7 @@
                 android:includeFontPadding="true"
                 android:paddingLeft="10sp"
                 android:textAllCaps="true"
-                android:textSize = "40sp"
-                />
+                android:textSize="40sp" />
 
             <Button
                 android:id="@+id/button12"
@@ -121,8 +120,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="CLEAR"
-                app:srcCompat="@drawable/clear_img"
-                />
+                app:srcCompat="@drawable/clear_img" />
 
             <ImageButton
                 android:id="@+id/button21"
@@ -156,4 +154,4 @@
                 />
         </LinearLayout>
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
