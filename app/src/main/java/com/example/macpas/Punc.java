@@ -1,7 +1,5 @@
 package com.example.macpas;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,19 +10,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Locale;
 
-public class EFGH extends AppCompatActivity {
+public class Punc extends AppCompatActivity {
     private TextView subdisplay;
 
-    private Button E;
-    private Button F;
-    private Button G;
-    private Button H;
+    private Button question;
+    private Button exclamation;
+    private Button comma;
+    private Button and;
+    private Button period;
+    private Button at;
     private Button cancel;
 
     private Button buttonScan;
-    private int[] arrButton = {R.id.button6,R.id.button5,R.id.button4,R.id.button3,R.id.button8};
+    private int[] arrButton = {R.id.button6,R.id.button5,R.id.button4,R.id.button3,R.id.button7,R.id.button9,R.id.button8};
     private int current = 0;
     private boolean scanning = false;
     private CountDownTimer timer;
@@ -33,33 +35,34 @@ public class EFGH extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_efgh);
-
+        setContentView(R.layout.activity_punc);
 
         Bundle extras = getIntent().getExtras();
         String value = "";
         if (extras != null) {
             value = extras.getString("display");
         }
-        subSpeed = extras.getInt("toSubSpeed");
-        extras.remove("toSubSpeed");
+        subSpeed = extras.getInt("toPuncSpeed");
+        extras.remove("toPuncSpeed");
         subdisplay = (TextView) findViewById(R.id.textView2);
         subdisplay.setText(value);
 
-        E = (Button) findViewById(R.id.button6);
-        F = (Button) findViewById(R.id.button5);
-        G = (Button) findViewById(R.id.button4);
-        H = (Button) findViewById(R.id.button3);
+        question = (Button) findViewById(R.id.button6);
+        exclamation = (Button) findViewById(R.id.button5);
+        comma = (Button) findViewById(R.id.button4);
+        and = (Button) findViewById(R.id.button3);
+        period = (Button) findViewById(R.id.button7);
+        at = (Button) findViewById(R.id.button9);
         cancel = (Button) findViewById(R.id.button8);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMain();
+                openNumPunc();
             }
         });
 
-        E.setOnClickListener(new View.OnClickListener() {
+        question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(scanning) {
@@ -68,13 +71,13 @@ public class EFGH extends AppCompatActivity {
                     current = 0;
                 }
                 String str = subdisplay.getText().toString();
-                str += "E";
+                str += "?";
                 subdisplay.setText(str);
                 openMain();
             }
         });
 
-        F.setOnClickListener(new View.OnClickListener() {
+        exclamation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(scanning) {
@@ -83,13 +86,13 @@ public class EFGH extends AppCompatActivity {
                     current = 0;
                 }
                 String str = subdisplay.getText().toString();
-                str += "F";
+                str += "!";
                 subdisplay.setText(str);
                 openMain();
             }
         });
 
-        G.setOnClickListener(new View.OnClickListener() {
+        comma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(scanning) {
@@ -98,13 +101,13 @@ public class EFGH extends AppCompatActivity {
                     current = 0;
                 }
                 String str = subdisplay.getText().toString();
-                str += "G";
+                str += ",";
                 subdisplay.setText(str);
                 openMain();
             }
         });
 
-        H.setOnClickListener(new View.OnClickListener() {
+        and.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(scanning) {
@@ -113,12 +116,41 @@ public class EFGH extends AppCompatActivity {
                     current = 0;
                 }
                 String str = subdisplay.getText().toString();
-                str += "H";
+                str += "&";
                 subdisplay.setText(str);
                 openMain();
             }
         });
-        buttonScan = (Button) findViewById(R.id.button11);
+
+        period.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(scanning) {
+                    timer.cancel();
+                    scanning = false;
+                    current = 0;
+                }
+                String str = subdisplay.getText().toString();
+                str += ".";
+                subdisplay.setText(str);
+                openMain();
+            }
+        });
+        at.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(scanning) {
+                    timer.cancel();
+                    scanning = false;
+                    current = 0;
+                }
+                String str = subdisplay.getText().toString();
+                str += "@";
+                subdisplay.setText(str);
+                openMain();
+            }
+        });
+        buttonScan = (Button) findViewById(R.id.button13);
         buttonScan.setText(Integer.toString(subSpeed));
         buttonScan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +159,7 @@ public class EFGH extends AppCompatActivity {
                 if(scanning == false) {
                     //buttonScan.setText("SELECT");
                     scanning = true;
-                    timer = new CountDownTimer(5*subSpeed, subSpeed) {
+                    timer = new CountDownTimer(7*subSpeed, subSpeed) {
                         public void onFinish() {
                             // When timer is finished
                             // Execute your code here
@@ -162,27 +194,44 @@ public class EFGH extends AppCompatActivity {
                     switch(temp){
                         case 0:
                             str = subdisplay.getText().toString();
-                            str += "E";
+                            str += "?";
                             subdisplay.setText(str);
+                            openMain();
                             break;
                         case 1:
                             str = subdisplay.getText().toString();
-                            str += "F";
+                            str += "!";
                             subdisplay.setText(str);
+                            openMain();
                             break;
                         case 2:
                             str = subdisplay.getText().toString();
-                            str += "G";
+                            str += ",";
                             subdisplay.setText(str);
+                            openMain();
                             break;
                         case 3:
                             str = subdisplay.getText().toString();
-                            str += "H";
+                            str += "&";
                             subdisplay.setText(str);
+                            openMain();
                             break;
-
+                        case 4:
+                            str = subdisplay.getText().toString();
+                            str += ".";
+                            subdisplay.setText(str);
+                            openMain();
+                            break;
+                        case 5:
+                            str = subdisplay.getText().toString();
+                            str += "@";
+                            subdisplay.setText(str);
+                            openMain();
+                            break;
+                        case 6:
+                            openNumPunc();
+                            break;
                     }
-                    openMain();
                     scanning = false;
                 }
 
@@ -204,8 +253,8 @@ public class EFGH extends AppCompatActivity {
                 }
             }
         });
-    }
 
+    }
     public void openMain() {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("display",subdisplay.getText());
@@ -213,8 +262,16 @@ public class EFGH extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openNumPunc() {
+        Intent intent = new Intent(this, NumPunc.class);
+        intent.putExtra("display",subdisplay.getText());
+        intent.putExtra("toSubSpeed",subSpeed);
+        startActivity(intent);
+    }
+
     public void resetColour(int current){
         Button prevButton = (Button) findViewById(arrButton[current - 1]);
         prevButton.setBackground(buttonScan.getBackground());
     }
+
 }

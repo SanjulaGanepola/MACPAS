@@ -13,18 +13,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
-import com.example.macpas.ABCD;
-import com.example.macpas.EFGH;
-import com.example.macpas.IJKLMN;
-import com.example.macpas.OPQRST;
-import com.example.macpas.R;
-import com.example.macpas.UVWXYZ;
 
 import java.util.Locale;
 
@@ -37,7 +27,7 @@ public class HomeFragment extends Fragment {
     private ImageButton backspace;
     private ImageButton space;
     private ImageButton clear;
-    private ImageButton speak;
+    private ImageButton numPunc;
     private TextToSpeech mTTS;
     private TextView display;
     private Button buttonScan;
@@ -132,8 +122,10 @@ public class HomeFragment extends Fragment {
                 openClear();
             }
         });
-        speak = (ImageButton) root.findViewById(R.id.button21);
-        speak.setOnClickListener(new View.OnClickListener() {
+
+        display = (TextView) root.findViewById(R.id.textView4);
+        display.setBackgroundColor(Color.WHITE);
+        display.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(scanning) {
@@ -143,6 +135,18 @@ public class HomeFragment extends Fragment {
                     current = 0;
                 }
                 openSpeak();
+            }
+        });
+        numPunc = (ImageButton) root.findViewById(R.id.button21);
+        numPunc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(scanning) {
+                    timer.cancel();
+                    scanning = false;
+                    current = 0;
+                }
+                openNumPunc();
             }
         });
         backspace = (ImageButton) root.findViewById(R.id.button22);
@@ -171,8 +175,6 @@ public class HomeFragment extends Fragment {
                 openSpace();
             }
         });
-
-        display = (TextView) root.findViewById(R.id.textView4);
 
         buttonScan = (Button) root.findViewById(R.id.button12);
         buttonScan.setText(Integer.toString(homeSpeed));
@@ -247,7 +249,7 @@ public class HomeFragment extends Fragment {
                             openClear();
                             break;
                         case 6:
-                            openSpeak();
+                            openNumPunc();
                             break;
                         case 7:
                             openBackspace();
@@ -262,17 +264,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-
-
         String value = "";
         if (extras != null) {
-            value = extras.getString("subdisplay");
+            value = extras.getString("display");
         }
         display.setText(value);
-
-
-
 
         mTTS = new TextToSpeech(this.getActivity(), new TextToSpeech.OnInitListener() {
             @Override
@@ -284,7 +280,7 @@ public class HomeFragment extends Fragment {
                             || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                         Log.e("TTS", "Language not supported");
                     } else {
-                        speak.setEnabled(true);
+                        display.setEnabled(true);
                     }
                 } else {
                     Log.e("TTS", "Initialization failed");
@@ -336,7 +332,12 @@ public class HomeFragment extends Fragment {
             display.setText(str);
         }
     }
-
+    public void openNumPunc() {
+        Intent intent = new Intent(this.getActivity(), NumPunc.class);
+        intent.putExtra("display",display.getText());
+        intent.putExtra("toSubSpeed",homeSpeed);
+        startActivity(intent);
+    }
     public void openSpeak() {
         buttonScan.setEnabled(true);
         String text = display.getText().toString();

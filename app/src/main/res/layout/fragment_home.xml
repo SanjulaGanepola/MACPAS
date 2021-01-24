@@ -130,8 +130,8 @@
                 android:contentDescription="SPEAK"
                 android:tint="#000000"
 
-                app:srcCompat="@drawable/ic_baseline_volume_up_24"
-                tools:srcCompat="@drawable/ic_baseline_volume_up_24" />
+                app:srcCompat="@drawable/glenius"
+                tools:srcCompat="@drawable/glenius" />
 
             <ImageButton
                 android:id="@+id/button22"

@@ -12,24 +12,25 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
-import android.os.Bundle;
-
 import java.util.Locale;
 
-public class IJKLMN extends AppCompatActivity {
+public class Num extends AppCompatActivity {
     private TextView subdisplay;
 
-    private Button I;
-    private Button J;
-    private Button K;
-    private Button L;
-    private Button M;
-    private Button N;
+    private Button zero;
+    private Button one;
+    private Button two;
+    private Button three;
+    private Button four;
+    private Button five;
+    private Button six;
+    private Button seven;
+    private Button eight;
+    private Button nine;
     private Button cancel;
 
     private Button buttonScan;
-    private int[] arrButton = {R.id.button6,R.id.button5,R.id.button4,R.id.button3,R.id.button7,R.id.button9,R.id.button8};
+    private int[] arrButton = {R.id.button6,R.id.button5,R.id.button16,R.id.button4,R.id.button3,R.id.button17,R.id.button7,R.id.button9,R.id.button18,R.id.button19,R.id.button8};
     private int current = 0;
     private boolean scanning = false;
     private CountDownTimer timer;
@@ -38,35 +39,38 @@ public class IJKLMN extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ijklmn);
-
+        setContentView(R.layout.activity_num);
 
         Bundle extras = getIntent().getExtras();
         String value = "";
         if (extras != null) {
             value = extras.getString("display");
         }
-        subSpeed = extras.getInt("toSubSpeed");
-        extras.remove("toSubSpeed");
+        subSpeed = extras.getInt("toNumSpeed");
+        extras.remove("toNumSpeed");
         subdisplay = (TextView) findViewById(R.id.textView2);
         subdisplay.setText(value);
 
-        I = (Button) findViewById(R.id.button6);
-        J = (Button) findViewById(R.id.button5);
-        K = (Button) findViewById(R.id.button4);
-        L = (Button) findViewById(R.id.button3);
-        M = (Button) findViewById(R.id.button7);
-        N = (Button) findViewById(R.id.button9);
+        zero = (Button) findViewById(R.id.button6);
+        one = (Button) findViewById(R.id.button5);
+        two = (Button) findViewById(R.id.button16);
+        three = (Button) findViewById(R.id.button4);
+        four = (Button) findViewById(R.id.button3);
+        five = (Button) findViewById(R.id.button17);
+        six = (Button) findViewById(R.id.button7);
+        seven = (Button) findViewById(R.id.button9);
+        eight = (Button) findViewById(R.id.button18);
+        nine = (Button) findViewById(R.id.button19);
         cancel = (Button) findViewById(R.id.button8);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMain();
+                openNumPunc();
             }
         });
 
-        I.setOnClickListener(new View.OnClickListener() {
+        zero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(scanning) {
@@ -75,13 +79,13 @@ public class IJKLMN extends AppCompatActivity {
                     current = 0;
                 }
                 String str = subdisplay.getText().toString();
-                str += "I";
+                str += "0";
                 subdisplay.setText(str);
                 openMain();
             }
         });
 
-        J.setOnClickListener(new View.OnClickListener() {
+        one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(scanning) {
@@ -90,13 +94,13 @@ public class IJKLMN extends AppCompatActivity {
                     current = 0;
                 }
                 String str = subdisplay.getText().toString();
-                str += "J";
+                str += "1";
                 subdisplay.setText(str);
                 openMain();
             }
         });
 
-        K.setOnClickListener(new View.OnClickListener() {
+        two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(scanning) {
@@ -105,13 +109,13 @@ public class IJKLMN extends AppCompatActivity {
                     current = 0;
                 }
                 String str = subdisplay.getText().toString();
-                str += "K";
+                str += "2";
                 subdisplay.setText(str);
                 openMain();
             }
         });
 
-        L.setOnClickListener(new View.OnClickListener() {
+        three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(scanning) {
@@ -120,13 +124,13 @@ public class IJKLMN extends AppCompatActivity {
                     current = 0;
                 }
                 String str = subdisplay.getText().toString();
-                str += "L";
+                str += "3";
                 subdisplay.setText(str);
                 openMain();
             }
         });
 
-        M.setOnClickListener(new View.OnClickListener() {
+        four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(scanning) {
@@ -135,12 +139,12 @@ public class IJKLMN extends AppCompatActivity {
                     current = 0;
                 }
                 String str = subdisplay.getText().toString();
-                str += "M";
+                str += "4";
                 subdisplay.setText(str);
                 openMain();
             }
         });
-        N.setOnClickListener(new View.OnClickListener() {
+        five.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(scanning) {
@@ -149,7 +153,63 @@ public class IJKLMN extends AppCompatActivity {
                     current = 0;
                 }
                 String str = subdisplay.getText().toString();
-                str += "N";
+                str += "5";
+                subdisplay.setText(str);
+                openMain();
+            }
+        });
+        six.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(scanning) {
+                    timer.cancel();
+                    scanning = false;
+                    current = 0;
+                }
+                String str = subdisplay.getText().toString();
+                str += "6";
+                subdisplay.setText(str);
+                openMain();
+            }
+        });
+        seven.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(scanning) {
+                    timer.cancel();
+                    scanning = false;
+                    current = 0;
+                }
+                String str = subdisplay.getText().toString();
+                str += "7";
+                subdisplay.setText(str);
+                openMain();
+            }
+        });
+        eight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(scanning) {
+                    timer.cancel();
+                    scanning = false;
+                    current = 0;
+                }
+                String str = subdisplay.getText().toString();
+                str += "8";
+                subdisplay.setText(str);
+                openMain();
+            }
+        });
+        nine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(scanning) {
+                    timer.cancel();
+                    scanning = false;
+                    current = 0;
+                }
+                String str = subdisplay.getText().toString();
+                str += "9";
                 subdisplay.setText(str);
                 openMain();
             }
@@ -163,7 +223,7 @@ public class IJKLMN extends AppCompatActivity {
                 if(scanning == false) {
                     //buttonScan.setText("SELECT");
                     scanning = true;
-                    timer = new CountDownTimer(7*subSpeed, subSpeed) {
+                    timer = new CountDownTimer(11*subSpeed, subSpeed) {
                         public void onFinish() {
                             // When timer is finished
                             // Execute your code here
@@ -198,36 +258,68 @@ public class IJKLMN extends AppCompatActivity {
                     switch(temp){
                         case 0:
                             str = subdisplay.getText().toString();
-                            str += "I";
+                            str += "0";
                             subdisplay.setText(str);
+                            openMain();
                             break;
                         case 1:
                             str = subdisplay.getText().toString();
-                            str += "J";
+                            str += "1";
                             subdisplay.setText(str);
+                            openMain();
                             break;
                         case 2:
                             str = subdisplay.getText().toString();
-                            str += "K";
+                            str += "2";
                             subdisplay.setText(str);
+                            openMain();
                             break;
                         case 3:
                             str = subdisplay.getText().toString();
-                            str += "L";
+                            str += "3";
                             subdisplay.setText(str);
+                            openMain();
                             break;
                         case 4:
                             str = subdisplay.getText().toString();
-                            str += "M";
+                            str += "4";
                             subdisplay.setText(str);
+                            openMain();
                             break;
                         case 5:
                             str = subdisplay.getText().toString();
-                            str += "N";
+                            str += "5";
                             subdisplay.setText(str);
+                            openMain();
+                            break;
+                        case 6:
+                            str = subdisplay.getText().toString();
+                            str += "6";
+                            subdisplay.setText(str);
+                            openMain();
+                            break;
+                        case 7:
+                            str = subdisplay.getText().toString();
+                            str += "7";
+                            subdisplay.setText(str);
+                            openMain();
+                            break;
+                        case 8:
+                            str = subdisplay.getText().toString();
+                            str += "8";
+                            subdisplay.setText(str);
+                            openMain();
+                            break;
+                        case 9:
+                            str = subdisplay.getText().toString();
+                            str += "9";
+                            subdisplay.setText(str);
+                            openMain();
+                            break;
+                        case 10:
+                            openNumPunc();
                             break;
                     }
-                    openMain();
                     scanning = false;
                 }
 
@@ -255,6 +347,13 @@ public class IJKLMN extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("display",subdisplay.getText());
         intent.putExtra("toHomeSpeed",subSpeed);
+        startActivity(intent);
+    }
+
+    public void openNumPunc() {
+        Intent intent = new Intent(this, NumPunc.class);
+        intent.putExtra("display",subdisplay.getText());
+        intent.putExtra("toSubSpeed",subSpeed);
         startActivity(intent);
     }
 

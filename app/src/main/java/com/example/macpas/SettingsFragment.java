@@ -1,9 +1,12 @@
 package com.example.macpas;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -13,6 +16,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import static com.example.macpas.R.style.AppTheme;
+import static com.example.macpas.R.style.DefaultColor;
+import static com.example.macpas.R.style.WhiteOnBlackTheme;
+import static com.example.macpas.R.style.BlueOnYellowTheme;
+import static com.example.macpas.R.style.YellowOnBlueTheme;
+
 import com.example.macpas.R;
 
 public class SettingsFragment extends Fragment {
@@ -21,11 +30,51 @@ public class SettingsFragment extends Fragment {
     private int settingSpeed;
     private TextView t;
 
+    private View root;
+    private int checkedButton = 0;
+
+    private RadioButton defaultColor;
+    private RadioButton wb;
+    private RadioButton by;
+    private RadioButton yb;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_settings, container, false);
+        root = inflater.inflate(R.layout.fragment_settings, container, false);
+
+        defaultColor = (RadioButton) root.findViewById(R.id.radioButton4);
+        wb = (RadioButton) root.findViewById(R.id.radioButton3);
+        by = (RadioButton) root.findViewById(R.id.radioButton2);
+        yb = (RadioButton) root.findViewById(R.id.radioButton);
+
+        defaultColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().setTheme(DefaultColor);
+            }
+        });
+
+        wb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().setTheme(WhiteOnBlackTheme);
+            }
+        });
+
+        by.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().setTheme(BlueOnYellowTheme);
+            }
+        });
+
+        yb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().setTheme(YellowOnBlueTheme);
+            }
+        });
 
         settingSpeed = ((MainActivity) getActivity()).speed;
 

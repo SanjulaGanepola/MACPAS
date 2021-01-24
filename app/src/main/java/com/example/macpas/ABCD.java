@@ -211,7 +211,7 @@ public class ABCD extends AppCompatActivity {
 
     public void openMain() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("subdisplay",subdisplay.getText());
+        intent.putExtra("display",subdisplay.getText());
         intent.putExtra("toHomeSpeed",subSpeed);
         startActivity(intent);
     }

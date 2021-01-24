@@ -1,5 +1,6 @@
 package com.example.macpas;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,7 @@ public class TutorialFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_tutorial, container, false);
+
         viewPager = root.findViewById(R.id.pager);
         pagerAdapter = new ScreenSlidePagerAdapter(this.getActivity());
         ((ScreenSlidePagerAdapter) pagerAdapter).addFragment(new TutorialPage1());
