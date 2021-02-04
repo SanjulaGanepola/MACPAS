@@ -1,6 +1,7 @@
 package com.example.macpas;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -16,6 +17,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import static com.example.macpas.R.style.DefaultColor;
+import static com.example.macpas.R.style.WhiteOnBlackTheme;
+import static com.example.macpas.R.style.BlueOnYellowTheme;
+import static com.example.macpas.R.style.YellowOnBlueTheme;
+
 import java.util.Locale;
 
 public class HomeFragment extends Fragment {
@@ -28,6 +34,7 @@ public class HomeFragment extends Fragment {
     private ImageButton space;
     private ImageButton clear;
     private ImageButton numPunc;
+    private ImageButton abbrev;
     private TextToSpeech mTTS;
     private TextView display;
     private Button buttonScan;
@@ -37,11 +44,14 @@ public class HomeFragment extends Fragment {
     private CountDownTimer timer;
     private View root;
     private int homeSpeed;
+    private int homeTheme;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.fragment_home, container, false);
         Bundle extras = getActivity().getIntent().getExtras();
+
+        homeTheme = ((MainActivity) getActivity()).currentTheme;
 
         homeSpeed = ((MainActivity) getActivity()).speed;
         buttonABCD = (Button) root.findViewById(R.id.button24);
@@ -122,9 +132,9 @@ public class HomeFragment extends Fragment {
                 openClear();
             }
         });
-
         display = (TextView) root.findViewById(R.id.textView4);
         display.setBackgroundColor(Color.WHITE);
+        display.setTextColor(Color.BLACK);
         display.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -175,9 +185,22 @@ public class HomeFragment extends Fragment {
                 openSpace();
             }
         });
+        abbrev = (ImageButton) root.findViewById(R.id.button29);
+        abbrev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(scanning) {
+                    timer.cancel();
+                    scanning = false;
+                    resetColour(current);
+                    current = 0;
+                }
+                abbreviation((String) display.getText());
+            }
+        });
 
         buttonScan = (Button) root.findViewById(R.id.button12);
-        buttonScan.setText(Integer.toString(homeSpeed));
+        buttonScan.setText(Integer.toString(homeTheme));
         buttonScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -293,6 +316,8 @@ public class HomeFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), ABCD.class);
         intent.putExtra("display",display.getText());
         intent.putExtra("toSubSpeed",homeSpeed);
+        intent.putExtra("toSubTheme", homeTheme);
+
         startActivity(intent);
     }
 
@@ -323,7 +348,12 @@ public class HomeFragment extends Fragment {
         intent.putExtra("toSubSpeed",homeSpeed);
         startActivity(intent);
     }
-
+    public void openNumPunc() {
+        Intent intent = new Intent(this.getActivity(), NumPunc.class);
+        intent.putExtra("display",display.getText());
+        intent.putExtra("toSubSpeed",homeSpeed);
+        startActivity(intent);
+    }
     public void openClear() {
         buttonScan.setEnabled(true);
         String str = display.getText().toString();
@@ -331,12 +361,6 @@ public class HomeFragment extends Fragment {
             str = "";
             display.setText(str);
         }
-    }
-    public void openNumPunc() {
-        Intent intent = new Intent(this.getActivity(), NumPunc.class);
-        intent.putExtra("display",display.getText());
-        intent.putExtra("toSubSpeed",homeSpeed);
-        startActivity(intent);
     }
     public void openSpeak() {
         buttonScan.setEnabled(true);
@@ -367,6 +391,41 @@ public class HomeFragment extends Fragment {
         else{
             ImageButton prevButton = (ImageButton) root.findViewById(arrButton[current - 1]);
             prevButton.setBackground(buttonScan.getBackground());
+        }
+    }
+    public void abbreviation(String displayText) {
+        if(displayText.equals("TY")) {
+            display.setText("Thank you");
+        } else if(displayText.equals("YW")) {
+            display.setText("You're welcome");
+        } else if(displayText.equals("DK")) {
+            display.setText("I don't know");
+        } else if(displayText.equals("TL")) {
+            display.setText("Talk to you later");
+        } else if(displayText.equals("LOL")) {
+            display.setText("Laughing out loud");
+        } else if(displayText.equals("NP")) {
+            display.setText("No problem");
+        } else if(displayText.equals("HH")) {
+            display.setText("Hello. How are?");
+        } else if(displayText.equals("P")) {
+            display.setText("I have pain. Ask me where");
+        } else if(displayText.equals("IW")) {
+            display.setText("I have an itch please verbally scan my body to find out where.");
+        } else if(displayText.equals("SW")) {
+            display.setText("Something is wrong.  Ask me questions");
+        } else if(displayText.equals("T")) {
+            display.setText("I am tired and want to rest");
+        } else if(displayText.equals("S")) {
+            display.setText("I want to stop now");
+        } else if(displayText.equals("AP")) {
+            display.setText("Please add a phrase to my dictionary");
+        } else if(displayText.equals("H")) {
+            display.setText("I need help");
+        } else if(displayText.equals("GB")) {
+            display.setText("Good bye! Nice to see you");
+        } else if(displayText.equals("M")) {
+            display.setText("Medication is not working");
         }
     }
 }

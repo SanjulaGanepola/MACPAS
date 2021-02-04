@@ -2,6 +2,7 @@ package com.example.macpas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -216,5 +218,15 @@ public class EFGH extends AppCompatActivity {
     public void resetColour(int current){
         Button prevButton = (Button) findViewById(arrButton[current - 1]);
         prevButton.setBackground(buttonScan.getBackground());
+    }
+
+    @Override
+    public void onBackPressed() {
+        Context context = getApplicationContext();
+        CharSequence text = "Back Disabled";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 }

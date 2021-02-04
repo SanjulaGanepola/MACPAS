@@ -1,5 +1,6 @@
 package com.example.macpas;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -274,4 +276,13 @@ public class Punc extends AppCompatActivity {
         prevButton.setBackground(buttonScan.getBackground());
     }
 
+    @Override
+    public void onBackPressed() {
+        Context context = getApplicationContext();
+        CharSequence text = "Back Disabled";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
 }

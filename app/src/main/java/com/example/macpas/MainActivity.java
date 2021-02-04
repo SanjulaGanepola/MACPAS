@@ -1,6 +1,8 @@
 package com.example.macpas;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -21,26 +23,36 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import static com.example.macpas.R.style.DefaultColor;
+import static com.example.macpas.R.style.WhiteOnBlackTheme;
+import static com.example.macpas.R.style.BlueOnYellowTheme;
+import static com.example.macpas.R.style.YellowOnBlueTheme;
 import android.view.Menu;
+import android.widget.Toast;
+
+import static com.example.macpas.R.style.YellowOnBlueTheme;
 
 //MACPAS v1.2.0
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     int speed = 3000;
+    int currentTheme = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if(extras != null) {
             if (extras.containsKey("toHomeSpeed")) {
                 speed = extras.getInt("toHomeSpeed");
             }
+            if(extras.containsKey("toHomeTheme")) {
+                currentTheme = extras.getInt("toHomeTheme");
+            }
         }
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
 
@@ -53,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         displayView(R.id.nav_home);
-
     }
 
 
@@ -85,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
             ft.replace(R.id.content_frame, fragment);
             ft.commit();
         }
@@ -93,5 +105,51 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
+    }
+
+    @Override
+    public Resources.Theme getTheme() {
+        Resources.Theme theme = super.getTheme();
+
+        /*
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            if(extras.containsKey("toHomeTheme")) {
+                int subTheme = extras.getInt("toHomeTheme");
+                extras.remove("toHomeTheme");
+                currentTheme = subTheme;
+            }
+        }
+
+         */
+
+        switch (currentTheme) {
+            case 1:
+                theme.applyStyle(DefaultColor, true);
+                break;
+            case 2:
+                theme.applyStyle(WhiteOnBlackTheme, true);
+                break;
+            case 3:
+                theme.applyStyle(BlueOnYellowTheme, true);
+                break;
+            case 4:
+                theme.applyStyle(YellowOnBlueTheme, true);
+                break;
+        }
+
+
+        // you could also use a switch if you have many themes that could apply
+        return theme;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Context context = getApplicationContext();
+        CharSequence text = "Back Disabled";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 }

@@ -115,23 +115,14 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/button20"
+                android:id="@+id/button23"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="CLEAR"
-                app:srcCompat="@drawable/clear_img" />
+                android:contentDescription="SPACE"
+                app:srcCompat="@drawable/spacebar_img"
 
-            <ImageButton
-                android:id="@+id/button21"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="SPEAK"
-                android:tint="#000000"
-
-                app:srcCompat="@drawable/glenius"
-                tools:srcCompat="@drawable/glenius" />
+                />
 
             <ImageButton
                 android:id="@+id/button22"
@@ -144,14 +135,35 @@
                 tools:srcCompat="@drawable/ic_baseline_west_24" />
 
             <ImageButton
-                android:id="@+id/button23"
+                android:id="@+id/button29"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="SPACE"
-                app:srcCompat="@drawable/spacebar_img"
+                android:contentDescription="Numbers and Punctuation"
+                android:tint="#000000"
 
-                />
+                app:srcCompat="@drawable/ic_baseline_star_24"
+                tools:srcCompat="@drawable/ic_baseline_star_24" />
+
+            <ImageButton
+                android:id="@+id/button21"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="Numbers and Punctuation"
+                android:tint="#000000"
+
+                app:srcCompat="@drawable/glenius"
+                tools:srcCompat="@drawable/glenius" />
+
+            <ImageButton
+                android:id="@+id/button20"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="CLEAR"
+                app:srcCompat="@drawable/clear_img" />
+
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

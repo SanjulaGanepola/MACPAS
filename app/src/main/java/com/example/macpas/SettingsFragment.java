@@ -28,7 +28,9 @@ public class SettingsFragment extends Fragment {
 
     private SeekBar seekbar;
     private int settingSpeed;
+    private int settingTheme;
     private TextView t;
+    private TextView n;
 
     private View root;
     private int checkedButton = 0;
@@ -48,36 +50,61 @@ public class SettingsFragment extends Fragment {
         by = (RadioButton) root.findViewById(R.id.radioButton2);
         yb = (RadioButton) root.findViewById(R.id.radioButton);
 
+        settingTheme = ((MainActivity) getActivity()).currentTheme;
+        n = root.findViewById(R.id.textView5);
+        n.setText(Integer.toString(settingTheme));
+        switch(settingTheme) {
+            case 1:
+                defaultColor.setChecked(true);
+                break;
+            case 2:
+                wb.setChecked(true);
+                break;
+            case 3:
+                by.setChecked(true);
+                break;
+            case 4:
+                yb.setChecked(true);
+                break;
+        }
+
         defaultColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().setTheme(DefaultColor);
+                ((MainActivity) getActivity()).currentTheme = 1;
+                n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
+                //getActivity().setTheme(DefaultColor);
             }
         });
 
         wb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().setTheme(WhiteOnBlackTheme);
+                ((MainActivity) getActivity()).currentTheme = 2;
+                n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
+                //getActivity().setTheme(WhiteOnBlackTheme);
             }
         });
 
         by.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().setTheme(BlueOnYellowTheme);
+                ((MainActivity) getActivity()).currentTheme = 3;
+                n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
+                //getActivity().setTheme(BlueOnYellowTheme);
             }
         });
 
         yb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().setTheme(YellowOnBlueTheme);
+                ((MainActivity) getActivity()).currentTheme = 4;
+                n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
+                //getActivity().setTheme(YellowOnBlueTheme);
             }
         });
 
         settingSpeed = ((MainActivity) getActivity()).speed;
-
         t = root.findViewById(R.id.textView3);
         t.setText(Integer.toString(settingSpeed));
 

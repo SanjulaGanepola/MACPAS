@@ -1,5 +1,6 @@
 package com.example.macpas;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -263,4 +265,13 @@ public class OPQRST extends AppCompatActivity {
         prevButton.setBackground(buttonScan.getBackground());
     }
 
+    @Override
+    public void onBackPressed() {
+        Context context = getApplicationContext();
+        CharSequence text = "Back Disabled";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
 }
