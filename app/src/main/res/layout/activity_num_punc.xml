@@ -7,6 +7,7 @@
     android:layout_height="match_parent" >
 
     <LinearLayout
+        android:id="@+id/backlayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -84,9 +85,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="\@,!"
                     android:contentDescription="punctuation"
                     android:gravity="center_horizontal"
+                    android:text="\@,!"
                     app:autoSizeMaxTextSize="120sp"
                     app:autoSizeMinTextSize="10sp"
                     app:autoSizeStepGranularity="1sp"

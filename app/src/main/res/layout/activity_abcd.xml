@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/backlayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -76,12 +76,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="B"
                     android:contentDescription="b"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="10sp"
+                    android:text="B"
                     app:autoSizeMaxTextSize="120sp"
-                    app:autoSizeStepGranularity="1sp" />
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform" />
             </LinearLayout>
 
             <LinearLayout
@@ -95,8 +95,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="C"
                     android:contentDescription="c"
+                    android:text="C"
                     android:textSize="120sp" />
 
                 <Button
@@ -104,12 +104,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="D"
                     android:contentDescription="d"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="10sp"
+                    android:text="D"
                     app:autoSizeMaxTextSize="120sp"
-                    app:autoSizeStepGranularity="1sp" />
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform" />
             </LinearLayout>
 
         </LinearLayout>

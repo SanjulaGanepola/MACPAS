@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -11,6 +12,7 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,22 +33,28 @@ public class EFGH extends AppCompatActivity {
     private boolean scanning = false;
     private CountDownTimer timer;
     private TextToSpeech mTTS;
+
     private int subSpeed;
+    private int subTheme;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_efgh);
-
 
         Bundle extras = getIntent().getExtras();
         String value = "";
         if (extras != null) {
             value = extras.getString("display");
         }
-        subSpeed = extras.getInt("toSubSpeed");
-        extras.remove("toSubSpeed");
         subdisplay = (TextView) findViewById(R.id.textView2);
         subdisplay.setText(value);
+        subSpeed = extras.getInt("toSubSpeed");
+        extras.remove("toSubSpeed");
+
+        subdisplay.setBackgroundColor(Color.WHITE);
+        subdisplay.setTextColor(Color.BLACK);
+        subTheme = extras.getInt("toSubTheme");
+        extras.remove("toSubTheme");
 
         E = (Button) findViewById(R.id.button6);
         F = (Button) findViewById(R.id.button5);
@@ -120,8 +128,11 @@ public class EFGH extends AppCompatActivity {
                 openMain();
             }
         });
+
+        setNewTheme();
+
         buttonScan = (Button) findViewById(R.id.button11);
-        buttonScan.setText(Integer.toString(subSpeed));
+        buttonScan.setText(Integer.toString(subTheme));
         buttonScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -212,6 +223,7 @@ public class EFGH extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("display",subdisplay.getText());
         intent.putExtra("toHomeSpeed",subSpeed);
+        intent.putExtra("toHomeTheme",subTheme);
         startActivity(intent);
     }
 
@@ -228,5 +240,43 @@ public class EFGH extends AppCompatActivity {
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+    }
+
+    public void setNewTheme() {
+        int textColor = Color.BLACK;
+        int buttonColor = Color.parseColor("#D7D8D6");
+        int backgroundColor = Color.WHITE;
+
+        switch (subTheme) {
+            case 2:
+                textColor = Color.WHITE;
+                buttonColor = Color.BLACK;
+                backgroundColor = Color.WHITE;
+                break;
+            case 3:
+                textColor = Color.parseColor("#000080");
+                buttonColor = Color.parseColor("#FFFF00");
+                backgroundColor = Color.parseColor("#000080");
+                break;
+            case 4:
+                textColor = Color.parseColor("#FFFF00");
+                buttonColor = Color.parseColor("#000080");
+                backgroundColor = Color.parseColor("#FFFF00");
+                break;
+        }
+
+        LinearLayout back =(LinearLayout)findViewById(R.id.backlayout);
+        back.setBackgroundColor(backgroundColor);
+
+        E.setTextColor(textColor);
+        E.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        F.setTextColor(textColor);
+        F.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        G.setTextColor(textColor);
+        G.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        H.setTextColor(textColor);
+        H.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        cancel.setTextColor(textColor);
+        cancel.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
     }
 }

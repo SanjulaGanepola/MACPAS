@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,12 +57,16 @@ public class ABCD extends AppCompatActivity {
         subSpeed = extras.getInt("toSubSpeed");
         extras.remove("toSubSpeed");
 
+        subdisplay.setBackgroundColor(Color.WHITE);
+        subdisplay.setTextColor(Color.BLACK);
+        subTheme = extras.getInt("toSubTheme");
+        extras.remove("toSubTheme");
+
         A = (Button) findViewById(R.id.button6);
         B = (Button) findViewById(R.id.button5);
         C = (Button) findViewById(R.id.button4);
         D = (Button) findViewById(R.id.button3);
         cancel = (Button) findViewById(R.id.button8);
-
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +134,8 @@ public class ABCD extends AppCompatActivity {
                 openMain();
             }
         });
+
+        setNewTheme();
 
         buttonScan = (Button) findViewById(R.id.button10);
         buttonScan.setText(Integer.toString(subTheme));
@@ -230,36 +238,44 @@ public class ABCD extends AppCompatActivity {
         prevButton.setBackground(buttonScan.getBackground());
     }
 
+    public void setNewTheme() {
+        int textColor = Color.BLACK;
+        int buttonColor = Color.parseColor("#D7D8D6");
+        int backgroundColor = Color.WHITE;
 
-    @Override
-    public Resources.Theme getTheme() {
-        Resources.Theme theme = super.getTheme();
-
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            subTheme = extras.getInt("toSubTheme");
-            extras.remove("toSubTheme");
-
-
-            switch (subTheme) {
-                case 1:
-                    theme.applyStyle(DefaultColor, true);
-                    break;
-                case 2:
-                    theme.applyStyle(WhiteOnBlackTheme, true);
-                    break;
-                case 3:
-                    theme.applyStyle(BlueOnYellowTheme, true);
-                    break;
-                case 4:
-                    theme.applyStyle(YellowOnBlueTheme, true);
-                    break;
-            }
+        switch (subTheme) {
+            case 2:
+                textColor = Color.WHITE;
+                buttonColor = Color.BLACK;
+                backgroundColor = Color.WHITE;
+                break;
+            case 3:
+                textColor = Color.parseColor("#000080");
+                buttonColor = Color.parseColor("#FFFF00");
+                backgroundColor = Color.parseColor("#000080");
+                break;
+            case 4:
+                textColor = Color.parseColor("#FFFF00");
+                buttonColor = Color.parseColor("#000080");
+                backgroundColor = Color.parseColor("#FFFF00");
+                break;
         }
 
-        // you could also use a switch if you have many themes that could apply
-        return theme;
+        LinearLayout back =(LinearLayout)findViewById(R.id.backlayout);
+        back.setBackgroundColor(backgroundColor);
+
+        A.setTextColor(textColor);
+        A.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        B.setTextColor(textColor);
+        B.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        C.setTextColor(textColor);
+        C.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        D.setTextColor(textColor);
+        D.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        cancel.setTextColor(textColor);
+        cancel.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
     }
+
     @Override
     public void onBackPressed() {
         Context context = getApplicationContext();

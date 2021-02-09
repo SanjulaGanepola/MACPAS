@@ -7,6 +7,7 @@
     android:layout_height="match_parent" >
 
     <LinearLayout
+        android:id="@+id/backlayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -25,9 +26,9 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="SELECT LETTER"
                 android:layout_weight="1"
                 android:gravity="center_vertical|right"
+                android:hint="SELECT LETTER"
                 android:paddingLeft="10sp"
                 android:textAlignment="textStart"
                 android:textSize="30sp" />
@@ -63,24 +64,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="I"
                     android:contentDescription="i"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="10sp"
+                    android:text="I"
                     app:autoSizeMaxTextSize="100sp"
-                    app:autoSizeStepGranularity="1sp" />
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform" />
 
                 <Button
                     android:id="@+id/button5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="J"
                     android:contentDescription="j"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="10sp"
+                    android:text="J"
                     app:autoSizeMaxTextSize="100sp"
-                    app:autoSizeStepGranularity="1sp" />
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform" />
             </LinearLayout>
 
             <LinearLayout
@@ -94,24 +95,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="K"
                     android:contentDescription="k"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="10sp"
+                    android:text="K"
                     app:autoSizeMaxTextSize="100sp"
-                    app:autoSizeStepGranularity="1sp" />
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform" />
 
                 <Button
                     android:id="@+id/button3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="L"
                     android:contentDescription="l"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="10sp"
+                    android:text="L"
                     app:autoSizeMaxTextSize="100sp"
-                    app:autoSizeStepGranularity="1sp" />
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform" />
             </LinearLayout>
 
             <LinearLayout
@@ -125,24 +126,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="M"
                     android:contentDescription="m"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="10sp"
+                    android:text="M"
                     app:autoSizeMaxTextSize="100sp"
-                    app:autoSizeStepGranularity="1sp" />
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform" />
 
                 <Button
                     android:id="@+id/button9"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="N"
                     android:contentDescription="n"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="10sp"
+                    android:text="N"
                     app:autoSizeMaxTextSize="100sp"
-                    app:autoSizeStepGranularity="1sp" />
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform" />
             </LinearLayout>
 
 

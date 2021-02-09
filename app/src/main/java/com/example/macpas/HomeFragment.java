@@ -1,8 +1,10 @@
 package com.example.macpas;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
@@ -38,7 +40,7 @@ public class HomeFragment extends Fragment {
     private TextToSpeech mTTS;
     private TextView display;
     private Button buttonScan;
-    private int[] arrButton = {R.id.button24,R.id.button25,R.id.button26,R.id.button27,R.id.button28,R.id.button20,R.id.button21,R.id.button22,R.id.button23};
+    private int[] arrButton = {R.id.button24,R.id.button25,R.id.button26,R.id.button27,R.id.button28,R.id.button23,R.id.button22,R.id.button29,R.id.button21,R.id.button20};
     private int current = 0;
     private boolean scanning = false;
     private CountDownTimer timer;
@@ -199,6 +201,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        setNewTheme();
+
         buttonScan = (Button) root.findViewById(R.id.button12);
         buttonScan.setText(Integer.toString(homeTheme));
         buttonScan.setOnClickListener(new View.OnClickListener() {
@@ -208,7 +212,7 @@ public class HomeFragment extends Fragment {
                 if(scanning == false) {
                     //buttonScan.setText("SELECT");
                     scanning = true;
-                    timer = new CountDownTimer(9*homeSpeed, homeSpeed) {
+                    timer = new CountDownTimer(10*homeSpeed, homeSpeed) {
                         public void onFinish() {
                             // When timer is finished
                             // Execute your code here
@@ -269,16 +273,19 @@ public class HomeFragment extends Fragment {
                             openUVWXYZ();
                             break;
                         case 5:
-                            openClear();
+                            openSpace();
                             break;
                         case 6:
-                            openNumPunc();
-                            break;
-                        case 7:
                             openBackspace();
                             break;
+                        case 7:
+                            abbreviation((String) display.getText());
+                            break;
                         case 8:
-                            openSpace();
+                            openNumPunc();
+                            break;
+                        case 9:
+                            openClear();
                             break;
                     }
 
@@ -317,7 +324,6 @@ public class HomeFragment extends Fragment {
         intent.putExtra("display",display.getText());
         intent.putExtra("toSubSpeed",homeSpeed);
         intent.putExtra("toSubTheme", homeTheme);
-
         startActivity(intent);
     }
 
@@ -325,6 +331,7 @@ public class HomeFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), EFGH.class);
         intent.putExtra("display",display.getText());
         intent.putExtra("toSubSpeed",homeSpeed);
+        intent.putExtra("toSubTheme", homeTheme);
         startActivity(intent);
     }
 
@@ -332,6 +339,7 @@ public class HomeFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), IJKLMN.class);
         intent.putExtra("display",display.getText());
         intent.putExtra("toSubSpeed",homeSpeed);
+        intent.putExtra("toSubTheme", homeTheme);
         startActivity(intent);
     }
 
@@ -339,6 +347,7 @@ public class HomeFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), OPQRST.class);
         intent.putExtra("display",display.getText());
         intent.putExtra("toSubSpeed",homeSpeed);
+        intent.putExtra("toSubTheme", homeTheme);
         startActivity(intent);
     }
 
@@ -346,12 +355,14 @@ public class HomeFragment extends Fragment {
         Intent intent = new Intent(this.getActivity(), UVWXYZ.class);
         intent.putExtra("display",display.getText());
         intent.putExtra("toSubSpeed",homeSpeed);
+        intent.putExtra("toSubTheme", homeTheme);
         startActivity(intent);
     }
     public void openNumPunc() {
         Intent intent = new Intent(this.getActivity(), NumPunc.class);
         intent.putExtra("display",display.getText());
         intent.putExtra("toSubSpeed",homeSpeed);
+        intent.putExtra("toSubTheme", homeTheme);
         startActivity(intent);
     }
     public void openClear() {
@@ -427,5 +438,54 @@ public class HomeFragment extends Fragment {
         } else if(displayText.equals("M")) {
             display.setText("Medication is not working");
         }
+    }
+
+    public void setNewTheme() {
+        int textColor = Color.BLACK;
+        int buttonColor = Color.parseColor("#D7D8D6");
+        int backgroundColor = Color.WHITE;
+
+        switch (homeTheme) {
+            case 2:
+                textColor = Color.WHITE;
+                buttonColor = Color.BLACK;
+                backgroundColor = Color.WHITE;
+                break;
+            case 3:
+                textColor = Color.parseColor("#000080");
+                buttonColor = Color.parseColor("#FFFF00");
+                backgroundColor = Color.parseColor("#000080");
+                break;
+            case 4:
+                textColor = Color.parseColor("#FFFF00");
+                buttonColor = Color.parseColor("#000080");
+                backgroundColor = Color.parseColor("#FFFF00");
+                break;
+        }
+
+        root.setBackgroundColor(backgroundColor);
+
+        buttonABCD.setTextColor(textColor);
+        buttonABCD.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        buttonEFGH.setTextColor(textColor);
+        buttonEFGH.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        buttonIJKLMN.setTextColor(textColor);
+        buttonIJKLMN.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        buttonOPQRST.setTextColor(textColor);
+        buttonOPQRST.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        buttonUVWXYZ.setTextColor(textColor);
+        buttonUVWXYZ.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+
+        clear.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        space.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        abbrev.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        numPunc.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        backspace.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+
+        clear.setImageTintList(ColorStateList.valueOf(textColor));
+        space.setImageTintList(ColorStateList.valueOf(textColor));
+        abbrev.setImageTintList(ColorStateList.valueOf(textColor));
+        numPunc.setImageTintList(ColorStateList.valueOf(textColor));
+        backspace.setImageTintList(ColorStateList.valueOf(textColor));
     }
 }

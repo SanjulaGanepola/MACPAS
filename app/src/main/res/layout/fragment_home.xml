@@ -120,9 +120,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="SPACE"
-                app:srcCompat="@drawable/spacebar_img"
+                app:srcCompat="@drawable/ic_baseline_space_bar_32"
 
-                />
+                tools:srcCompat="@drawable/ic_baseline_space_bar_32" />
 
             <ImageButton
                 android:id="@+id/button22"
@@ -131,19 +131,19 @@
                 android:layout_weight="1"
                 android:contentDescription="BACKSPACE"
                 android:tint="#000000"
-                app:srcCompat="@drawable/ic_baseline_west_24"
-                tools:srcCompat="@drawable/ic_baseline_west_24" />
+                app:srcCompat="@drawable/ic_baseline_keyboard_backspace_32"
+                tools:srcCompat="@drawable/ic_baseline_keyboard_backspace_32" />
 
             <ImageButton
                 android:id="@+id/button29"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="Numbers and Punctuation"
+                android:contentDescription="Abbreviations"
                 android:tint="#000000"
 
-                app:srcCompat="@drawable/ic_baseline_star_24"
-                tools:srcCompat="@drawable/ic_baseline_star_24" />
+                app:srcCompat="@drawable/ic_baseline_star_32"
+                tools:srcCompat="@drawable/ic_baseline_star_32" />
 
             <ImageButton
                 android:id="@+id/button21"
@@ -152,9 +152,8 @@
                 android:layout_weight="1"
                 android:contentDescription="Numbers and Punctuation"
                 android:tint="#000000"
-
-                app:srcCompat="@drawable/glenius"
-                tools:srcCompat="@drawable/glenius" />
+                app:srcCompat="@drawable/_32crisp"
+                tools:srcCompat="@drawable/_32crisp" />
 
             <ImageButton
                 android:id="@+id/button20"
@@ -162,7 +161,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="CLEAR"
-                app:srcCompat="@drawable/clear_img" />
+                app:srcCompat="@drawable/ic_baseline_clear_32"
+                tools:srcCompat="@drawable/ic_baseline_clear_32" />
 
         </LinearLayout>
     </LinearLayout>

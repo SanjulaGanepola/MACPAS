@@ -108,42 +108,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public Resources.Theme getTheme() {
-        Resources.Theme theme = super.getTheme();
-
-        /*
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            if(extras.containsKey("toHomeTheme")) {
-                int subTheme = extras.getInt("toHomeTheme");
-                extras.remove("toHomeTheme");
-                currentTheme = subTheme;
-            }
-        }
-
-         */
-
-        switch (currentTheme) {
-            case 1:
-                theme.applyStyle(DefaultColor, true);
-                break;
-            case 2:
-                theme.applyStyle(WhiteOnBlackTheme, true);
-                break;
-            case 3:
-                theme.applyStyle(BlueOnYellowTheme, true);
-                break;
-            case 4:
-                theme.applyStyle(YellowOnBlueTheme, true);
-                break;
-        }
-
-
-        // you could also use a switch if you have many themes that could apply
-        return theme;
-    }
-
-    @Override
     public void onBackPressed() {
         Context context = getApplicationContext();
         CharSequence text = "Back Disabled";

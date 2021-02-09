@@ -2,6 +2,7 @@ package com.example.macpas;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -9,6 +10,7 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +38,9 @@ public class OPQRST extends AppCompatActivity {
     private boolean scanning = false;
     private CountDownTimer timer;
     private TextToSpeech mTTS;
+
     private int subSpeed;
+    private int subTheme;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,10 @@ public class OPQRST extends AppCompatActivity {
         extras.remove("toSubSpeed");
         subdisplay = (TextView) findViewById(R.id.textView2);
         subdisplay.setText(value);
+        subdisplay.setBackgroundColor(Color.WHITE);
+        subdisplay.setTextColor(Color.BLACK);
+        subTheme = extras.getInt("toSubTheme");
+        extras.remove("toSubTheme");
 
         O = (Button) findViewById(R.id.button6);
         P = (Button) findViewById(R.id.button5);
@@ -157,8 +165,11 @@ public class OPQRST extends AppCompatActivity {
                 openMain();
             }
         });
+
+        setNewTheme();
+
         buttonScan = (Button) findViewById(R.id.button14);
-        buttonScan.setText(Integer.toString(subSpeed));
+        buttonScan.setText(Integer.toString(subTheme));
         buttonScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -258,6 +269,7 @@ public class OPQRST extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("display",subdisplay.getText());
         intent.putExtra("toHomeSpeed",subSpeed);
+        intent.putExtra("toHomeTheme",subTheme);
         startActivity(intent);
     }
     public void resetColour(int current){
@@ -273,5 +285,47 @@ public class OPQRST extends AppCompatActivity {
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+    }
+
+    public void setNewTheme() {
+        int textColor = Color.BLACK;
+        int buttonColor = Color.parseColor("#D7D8D6");
+        int backgroundColor = Color.WHITE;
+
+        switch (subTheme) {
+            case 2:
+                textColor = Color.WHITE;
+                buttonColor = Color.BLACK;
+                backgroundColor = Color.WHITE;
+                break;
+            case 3:
+                textColor = Color.parseColor("#000080");
+                buttonColor = Color.parseColor("#FFFF00");
+                backgroundColor = Color.parseColor("#000080");
+                break;
+            case 4:
+                textColor = Color.parseColor("#FFFF00");
+                buttonColor = Color.parseColor("#000080");
+                backgroundColor = Color.parseColor("#FFFF00");
+                break;
+        }
+
+        LinearLayout back =(LinearLayout)findViewById(R.id.backlayout);
+        back.setBackgroundColor(backgroundColor);
+
+        O.setTextColor(textColor);
+        O.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        P.setTextColor(textColor);
+        P.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        Q.setTextColor(textColor);
+        Q.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        R2.setTextColor(textColor);
+        R2.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        S.setTextColor(textColor);
+        S.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        T.setTextColor(textColor);
+        T.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+        cancel.setTextColor(textColor);
+        cancel.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
     }
 }
