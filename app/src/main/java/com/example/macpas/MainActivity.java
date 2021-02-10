@@ -28,6 +28,7 @@ import static com.example.macpas.R.style.WhiteOnBlackTheme;
 import static com.example.macpas.R.style.BlueOnYellowTheme;
 import static com.example.macpas.R.style.YellowOnBlueTheme;
 import android.view.Menu;
+import android.view.View;
 import android.widget.Toast;
 
 import static com.example.macpas.R.style.YellowOnBlueTheme;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     int speed = 3000;
     int currentTheme = 1;
+    int currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        //currentFragment = menuItem.getItemId();
         displayView(menuItem.getItemId());
 
         return true;
@@ -97,13 +100,49 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
-            ft.replace(R.id.content_frame, fragment);
+            ft.replace(R.id.content_frame, fragment, "MY_FRAGMENT");
             ft.commit();
         }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+        /*
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+
+            }
+            @Override
+            public void onDrawerOpened(@NonNull View drawerView) {
+
+            }
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+
+            }
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+                if(currentFragment == R.id.nav_home) {
+                    HomeFragment hf = (HomeFragment) getSupportFragmentManager().findFragmentByTag("MY_FRAGMENT");
+                    if (hf != null && hf.isVisible()) {
+
+                        Context context = getApplicationContext();
+                        CharSequence text = "TESTING";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                        if(hf.timer != null) {
+                            hf.timer.cancel();
+                            hf.timer = null;
+                        }
+                    }
+                }
+            }
+        });
+        */
 
     }
 

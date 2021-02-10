@@ -34,7 +34,8 @@ public class ABCD extends AppCompatActivity {
     private Button cancel;
 
     private Button buttonScan;
-    private int[] arrButton = {R.id.button6,R.id.button5,R.id.button4,R.id.button3,R.id.button8};
+    private int[] arrButton = {R.id.button6,R.id.button5,R.id.button4,R.id.button3,R.id.button8,
+                               R.id.button6,R.id.button5,R.id.button4,R.id.button3,R.id.button8};
     private int current = 0;
     private boolean scanning = false;
     private CountDownTimer timer;
@@ -42,6 +43,7 @@ public class ABCD extends AppCompatActivity {
 
     private int subSpeed;
     private int subTheme;
+    private int buttonColor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,12 +148,12 @@ public class ABCD extends AppCompatActivity {
                 if(scanning == false) {
                     //buttonScan.setText("SELECT");
                     scanning = true;
-                    timer = new CountDownTimer(5*subSpeed, subSpeed) {
+                    timer = new CountDownTimer(10*subSpeed, subSpeed) {
                         public void onFinish() {
                             // When timer is finished
                             // Execute your code here
                             Button prevButton = (Button) findViewById(arrButton[current - 1]);
-                            prevButton.setBackground(buttonScan.getBackground());
+                            prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
                             current = 0;
                             //buttonScan.setText("SCAN");
                             scanning = false;
@@ -160,11 +162,11 @@ public class ABCD extends AppCompatActivity {
                         public void onTick(long millisUntilFinished) {
                             // millisUntilFinished    The amount of time until finished.
                             Button currButton = (Button) findViewById(arrButton[current]);
-                            currButton.setBackgroundColor(Color.BLUE);
+                            currButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#3EB0A6")));
                             mTTS.speak((String)currButton.getContentDescription(), TextToSpeech.QUEUE_FLUSH, null);
                             if (current > 0) {
                                 Button prevButton = (Button) findViewById(arrButton[current - 1]);
-                                prevButton.setBackground(buttonScan.getBackground());
+                                prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
                             }
                             current++;
                         }
@@ -178,6 +180,10 @@ public class ABCD extends AppCompatActivity {
                     resetColour(current);
                     current = 0;
                     String str;
+
+                    if(temp > 4) {
+                        temp = temp - 5;
+                    }
                     switch(temp){
                         case 0:
                             str = subdisplay.getText().toString();
@@ -240,7 +246,7 @@ public class ABCD extends AppCompatActivity {
 
     public void setNewTheme() {
         int textColor = Color.BLACK;
-        int buttonColor = Color.parseColor("#D7D8D6");
+        buttonColor = Color.parseColor("#D7D8D6");
         int backgroundColor = Color.WHITE;
 
         switch (subTheme) {

@@ -19,11 +19,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import static com.example.macpas.R.style.DefaultColor;
-import static com.example.macpas.R.style.WhiteOnBlackTheme;
-import static com.example.macpas.R.style.BlueOnYellowTheme;
-import static com.example.macpas.R.style.YellowOnBlueTheme;
-
 import java.util.Locale;
 
 public class HomeFragment extends Fragment {
@@ -40,13 +35,17 @@ public class HomeFragment extends Fragment {
     private TextToSpeech mTTS;
     private TextView display;
     private Button buttonScan;
-    private int[] arrButton = {R.id.button24,R.id.button25,R.id.button26,R.id.button27,R.id.button28,R.id.button23,R.id.button22,R.id.button29,R.id.button21,R.id.button20};
+    private int[] arrButton = {R.id.button24,R.id.button25,R.id.button26,R.id.button27,R.id.button28,
+                               R.id.button23,R.id.button22,R.id.button29,R.id.button21,R.id.button20,
+                               R.id.button24,R.id.button25,R.id.button26,R.id.button27,R.id.button28,
+                               R.id.button23,R.id.button22,R.id.button29,R.id.button21,R.id.button20};
     private int current = 0;
     private boolean scanning = false;
-    private CountDownTimer timer;
+    public CountDownTimer timer;
     private View root;
     private int homeSpeed;
     private int homeTheme;
+    private int buttonColor;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -212,12 +211,12 @@ public class HomeFragment extends Fragment {
                 if(scanning == false) {
                     //buttonScan.setText("SELECT");
                     scanning = true;
-                    timer = new CountDownTimer(10*homeSpeed, homeSpeed) {
+                    timer = new CountDownTimer(20*homeSpeed, homeSpeed) {
                         public void onFinish() {
                             // When timer is finished
                             // Execute your code here
                             ImageButton prevButton = (ImageButton) root.findViewById(arrButton[current - 1]);
-                            prevButton.setBackground(buttonScan.getBackground());
+                            prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
                             current = 0;
                             //buttonScan.setText("SCAN");
                             scanning = false;
@@ -225,24 +224,27 @@ public class HomeFragment extends Fragment {
 
                         public void onTick(long millisUntilFinished) {
                             // millisUntilFinished    The amount of time until finished.
-                            if (current < 5) {
+                            if (current < 5 || (9 < current && current < 15)) {
                                 Button currButton = (Button) root.findViewById(arrButton[current]);
-                                currButton.setBackgroundColor(Color.BLUE);
+                                currButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#3EB0A6")));
                                 mTTS.speak((String)currButton.getContentDescription(), TextToSpeech.QUEUE_FLUSH, null);
-                                if (current > 0) {
+                                if (current != 0 && current != 10) {
                                     Button prevButton = (Button) root.findViewById(arrButton[current - 1]);
-                                    prevButton.setBackground(buttonScan.getBackground());
+                                    prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+                                } else if(current == 10) {
+                                    ImageButton prevButton = (ImageButton) root.findViewById(arrButton[current - 1]);
+                                    prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
                                 }
                             } else {
                                 ImageButton currButton = (ImageButton) root.findViewById(arrButton[current]);
-                                currButton.setBackgroundColor(Color.BLUE);
+                                currButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#3EB0A6")));
                                 mTTS.speak((String)currButton.getContentDescription(), TextToSpeech.QUEUE_FLUSH, null);
-                                if (current == 5) {
+                                if (current == 5 || current == 15) {
                                     Button prevButton = (Button) root.findViewById(arrButton[current - 1]);
-                                    prevButton.setBackground(buttonScan.getBackground());
+                                    prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
                                 } else {
                                     ImageButton prevButton = (ImageButton) root.findViewById(arrButton[current - 1]);
-                                    prevButton.setBackground(buttonScan.getBackground());
+                                    prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
                                 }
                             }
                             current++;
@@ -254,6 +256,10 @@ public class HomeFragment extends Fragment {
                     timer.cancel();
                     //buttonScan.setText("SCAN");
                     int temp = current-1;
+
+                    if(temp > 9) {
+                        temp = temp - 10;
+                    }
                     resetColour(current);
                     current = 0;
                     switch(temp){
@@ -395,7 +401,7 @@ public class HomeFragment extends Fragment {
         }
     }
     public void resetColour(int current){
-        if(current < 6){
+        if(current < 6 || (10 < current && current < 16)){
             Button prevButton = (Button) root.findViewById(arrButton[current - 1]);
             prevButton.setBackground(buttonScan.getBackground());
         }
@@ -405,6 +411,7 @@ public class HomeFragment extends Fragment {
         }
     }
     public void abbreviation(String displayText) {
+        buttonScan.setEnabled(true);
         if(displayText.equals("TY")) {
             display.setText("Thank you");
         } else if(displayText.equals("YW")) {
@@ -442,7 +449,7 @@ public class HomeFragment extends Fragment {
 
     public void setNewTheme() {
         int textColor = Color.BLACK;
-        int buttonColor = Color.parseColor("#D7D8D6");
+        buttonColor = Color.parseColor("#D7D8D6");
         int backgroundColor = Color.WHITE;
 
         switch (homeTheme) {
