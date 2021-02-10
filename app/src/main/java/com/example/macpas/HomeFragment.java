@@ -39,8 +39,8 @@ public class HomeFragment extends Fragment {
                                R.id.button23,R.id.button22,R.id.button29,R.id.button21,R.id.button20,
                                R.id.button24,R.id.button25,R.id.button26,R.id.button27,R.id.button28,
                                R.id.button23,R.id.button22,R.id.button29,R.id.button21,R.id.button20};
-    private int current = 0;
-    private boolean scanning = false;
+    public int current = 0;
+    public boolean scanning = false;
     public CountDownTimer timer;
     private View root;
     private int homeSpeed;
@@ -403,11 +403,11 @@ public class HomeFragment extends Fragment {
     public void resetColour(int current){
         if(current < 6 || (10 < current && current < 16)){
             Button prevButton = (Button) root.findViewById(arrButton[current - 1]);
-            prevButton.setBackground(buttonScan.getBackground());
+            prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
         }
         else{
             ImageButton prevButton = (ImageButton) root.findViewById(arrButton[current - 1]);
-            prevButton.setBackground(buttonScan.getBackground());
+            prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
         }
     }
     public void abbreviation(String displayText) {

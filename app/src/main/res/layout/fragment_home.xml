@@ -30,7 +30,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="3.4"
+                android:layout_weight="0.4"
                 android:cursorVisible="false"
                 android:gravity="center_vertical|left"
                 android:hint="SELECT LETTER"
@@ -39,11 +39,19 @@
                 android:textAllCaps="true"
                 android:textSize="40sp" />
 
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
             <Button
                 android:id="@+id/button12"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="20"
+                android:alpha="0"
                 android:maxLines="1"
                 android:text="SCAN"
                 app:autoSizeMaxTextSize="20sp"
@@ -51,119 +59,127 @@
                 app:autoSizeStepGranularity="1sp"
                 app:autoSizeTextType="uniform" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_middle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/button24"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:contentDescription="a"
-                android:text="@string/a_b_c_d"
-                android:textSize="40sp" />
-
-            <Button
-                android:id="@+id/button25"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:contentDescription="e"
-                android:text="@string/e_f_g_h"
-                android:textSize="40sp" />
-
-            <Button
-                android:id="@+id/button26"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:contentDescription="i"
-                android:text="@string/i_j_k_l_m_n"
-                android:textSize="40sp" />
-
-            <Button
-                android:id="@+id/button27"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:contentDescription="o"
-                android:text="@string/o_p_q_r_s_t"
-                android:textSize="40sp" />
-
-            <Button
-                android:id="@+id/button28"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:contentDescription="u"
-                android:text="@string/u_v_w_x_y_z"
-                android:textSize="40sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/button23"
-                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="SPACE"
-                app:srcCompat="@drawable/ic_baseline_space_bar_32"
+                android:orientation="vertical">
 
-                tools:srcCompat="@drawable/ic_baseline_space_bar_32" />
+                <LinearLayout
+                    android:id="@+id/layout_middle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/button22"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="BACKSPACE"
-                android:tint="#000000"
-                app:srcCompat="@drawable/ic_baseline_keyboard_backspace_32"
-                tools:srcCompat="@drawable/ic_baseline_keyboard_backspace_32" />
+                    <Button
+                        android:id="@+id/button24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="a"
+                        android:text="@string/a_b_c_d"
+                        android:textSize="40sp" />
 
-            <ImageButton
-                android:id="@+id/button29"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="Abbreviations"
-                android:tint="#000000"
+                    <Button
+                        android:id="@+id/button25"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="e"
+                        android:text="@string/e_f_g_h"
+                        android:textSize="40sp" />
 
-                app:srcCompat="@drawable/ic_baseline_star_32"
-                tools:srcCompat="@drawable/ic_baseline_star_32" />
+                    <Button
+                        android:id="@+id/button26"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="i"
+                        android:text="@string/i_j_k_l_m_n"
+                        android:textSize="40sp" />
 
-            <ImageButton
-                android:id="@+id/button21"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="Numbers and Punctuation"
-                android:tint="#000000"
-                app:srcCompat="@drawable/_32crisp"
-                tools:srcCompat="@drawable/_32crisp" />
+                    <Button
+                        android:id="@+id/button27"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="o"
+                        android:text="@string/o_p_q_r_s_t"
+                        android:textSize="40sp" />
 
-            <ImageButton
-                android:id="@+id/button20"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="CLEAR"
-                app:srcCompat="@drawable/ic_baseline_clear_32"
-                tools:srcCompat="@drawable/ic_baseline_clear_32" />
+                    <Button
+                        android:id="@+id/button28"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:contentDescription="u"
+                        android:text="@string/u_v_w_x_y_z"
+                        android:textSize="40sp" />
 
-        </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/button23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:contentDescription="SPACE"
+                        app:srcCompat="@drawable/ic_baseline_space_bar_32"
+
+                        tools:srcCompat="@drawable/ic_baseline_space_bar_32" />
+
+                    <ImageButton
+                        android:id="@+id/button22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:contentDescription="BACKSPACE"
+                        android:tint="#000000"
+                        app:srcCompat="@drawable/ic_baseline_keyboard_backspace_32"
+                        tools:srcCompat="@drawable/ic_baseline_keyboard_backspace_32" />
+
+                    <ImageButton
+                        android:id="@+id/button29"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:contentDescription="Numbers and Punctuation"
+                        android:tint="#000000"
+
+                        app:srcCompat="@drawable/ic_baseline_star_32"
+                        tools:srcCompat="@drawable/ic_baseline_star_32" />
+
+                    <ImageButton
+                        android:id="@+id/button21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:contentDescription="Numbers and Punctuation"
+                        android:tint="#000000"
+
+                        app:srcCompat="@drawable/_32crisp"
+                        tools:srcCompat="@drawable/_32crisp" />
+
+                    <ImageButton
+                        android:id="@+id/button20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:contentDescription="CLEAR"
+                        app:srcCompat="@drawable/ic_baseline_clear_32"
+                        tools:srcCompat="@drawable/ic_baseline_clear_32" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </FrameLayout>
+
     </LinearLayout>
 </FrameLayout>

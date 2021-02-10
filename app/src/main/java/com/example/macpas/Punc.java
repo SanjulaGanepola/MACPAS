@@ -293,7 +293,7 @@ public class Punc extends AppCompatActivity {
 
     public void resetColour(int current){
         Button prevButton = (Button) findViewById(arrButton[current - 1]);
-        prevButton.setBackground(buttonScan.getBackground());
+        prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
     }
 
     @Override

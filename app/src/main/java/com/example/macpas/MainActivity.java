@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     int speed = 3000;
     int currentTheme = 1;
-    int currentFragment;
+    //int currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.setDrawerListener(toggle);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //currentFragment = R.id.nav_home;
         displayView(R.id.nav_home);
     }
 
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         /*
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -123,27 +125,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             @Override
             public void onDrawerStateChanged(int newState) {
-
                 if(currentFragment == R.id.nav_home) {
-                    HomeFragment hf = (HomeFragment) getSupportFragmentManager().findFragmentByTag("MY_FRAGMENT");
-                    if (hf != null && hf.isVisible()) {
-
+                    HomeFragment hf = (HomeFragment) getSupportFragmentManager().findFragmentByTag("HOME");
+                    if(hf.timer != null) {
                         Context context = getApplicationContext();
                         CharSequence text = "TESTING";
                         int duration = Toast.LENGTH_SHORT;
-
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
-                        if(hf.timer != null) {
-                            hf.timer.cancel();
-                            hf.timer = null;
-                        }
+
+                        hf.resetColour(hf.current);
+                        hf.current = 0;
+                        hf.scanning = false;
+                        hf.timer.cancel();
+                        hf.timer = null;
                     }
                 }
             }
         });
-        */
-
+         */
     }
 
     @Override
