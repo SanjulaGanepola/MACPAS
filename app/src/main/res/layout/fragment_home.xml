@@ -150,7 +150,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:contentDescription="Numbers and Punctuation"
+                        android:contentDescription="Abbreviation"
                         android:tint="#000000"
 
                         app:srcCompat="@drawable/ic_baseline_star_32"
