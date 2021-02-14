@@ -2,6 +2,7 @@ package com.example.macpas;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -425,45 +426,17 @@ public class HomeFragment extends Fragment {
     }
     public void abbreviation(String displayText) {
         buttonScan.setEnabled(true);
-        if(displayText.equals("TY")) {
-            homeDisplay = "THANK YOU";
-        } else if(displayText.equals("YW")) {
-            homeDisplay = "YOU'RE WELCOME";
-        } else if(displayText.equals("DK")) {
-            homeDisplay = "I DON'T KNOW";
-        } else if(displayText.equals("TL")) {
-            homeDisplay = "TALK TO YOU LATER";
-        } else if(displayText.equals("LOL")) {
-            homeDisplay = "LAUGHING OUT LOUD";
-        } else if(displayText.equals("NP")) {
-            homeDisplay = "NO PROBLEM";
-        } else if(displayText.equals("HH")) {
-            homeDisplay = "HELLO. HOW ARE YOU?";
-        } else if(displayText.equals("P")) {
-            homeDisplay = "I HAVE PAIN. ASK ME WHERE";
-        } else if(displayText.equals("IW")) {
-            String text = "I HAVE AN ITCH PLEASE VERBALLY SCAN MY BODY TO FIND OUT WHERE.";
-            mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-            return;
-        } else if(displayText.equals("SW")) {
-            homeDisplay = "SOMETHING IS WRONG. ASK ME QUESTIONS";
-        } else if(displayText.equals("T")) {
-            homeDisplay = "I AM TIRED AND WANT TO REST";
-        } else if(displayText.equals("S")) {
-            homeDisplay = "I WANT TO STOP NOW";
-        } else if(displayText.equals("AP")) {
-            homeDisplay = "PLEASE ADD A PHRASE TO MY DICTIONARY";
-        } else if(displayText.equals("H")) {
-            homeDisplay = "I NEED HELP";
-        } else if(displayText.equals("GB")) {
-            homeDisplay = "GOODBYE! NICE TO SEE YOU";
-        } else if(displayText.equals("M")) {
-            homeDisplay = "MEDICATION IS NOT WORKING";
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+        String phrase = sharedPreferences.getString(displayText, "");
+
+        if(phrase != ""){
+            homeDisplay = phrase;
+            display.setText(homeDisplay);
+            openSpeak();
         }
 
-        display.setText(homeDisplay);
 
-        openSpeak();
     }
 
     public void setNewTheme() {
@@ -515,3 +488,41 @@ public class HomeFragment extends Fragment {
         backspace.setImageTintList(ColorStateList.valueOf(textColor));
     }
 }
+
+/*
+if(displayText.equals("TY")) {
+            homeDisplay = "THANK YOU";
+        } else if(displayText.equals("YW")) {
+            homeDisplay = "YOU'RE WELCOME";
+        } else if(displayText.equals("DK")) {
+            homeDisplay = "I DON'T KNOW";
+        } else if(displayText.equals("TL")) {
+            homeDisplay = "TALK TO YOU LATER";
+        } else if(displayText.equals("LOL")) {
+            homeDisplay = "LAUGHING OUT LOUD";
+        } else if(displayText.equals("NP")) {
+            homeDisplay = "NO PROBLEM";
+        } else if(displayText.equals("HH")) {
+            homeDisplay = "HELLO. HOW ARE YOU?";
+        } else if(displayText.equals("P")) {
+            homeDisplay = "I HAVE PAIN. ASK ME WHERE";
+        } else if(displayText.equals("IW")) {
+            String text = "I HAVE AN ITCH PLEASE VERBALLY SCAN MY BODY TO FIND OUT WHERE.";
+            mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+            return;
+        } else if(displayText.equals("SW")) {
+            homeDisplay = "SOMETHING IS WRONG. ASK ME QUESTIONS";
+        } else if(displayText.equals("T")) {
+            homeDisplay = "I AM TIRED AND WANT TO REST";
+        } else if(displayText.equals("S")) {
+            homeDisplay = "I WANT TO STOP NOW";
+        } else if(displayText.equals("AP")) {
+            homeDisplay = "PLEASE ADD A PHRASE TO MY DICTIONARY";
+        } else if(displayText.equals("H")) {
+            homeDisplay = "I NEED HELP";
+        } else if(displayText.equals("GB")) {
+            homeDisplay = "GOODBYE! NICE TO SEE YOU";
+        } else if(displayText.equals("M")) {
+            homeDisplay = "MEDICATION IS NOT WORKING";
+        }
+ */

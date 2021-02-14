@@ -1,5 +1,6 @@
 package com.example.macpas;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -23,6 +25,7 @@ import static com.example.macpas.R.style.BlueOnYellowTheme;
 import static com.example.macpas.R.style.YellowOnBlueTheme;
 
 import com.example.macpas.R;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class SettingsFragment extends Fragment {
 
@@ -32,6 +35,10 @@ public class SettingsFragment extends Fragment {
     private TextView t;
     private TextView n;
 
+    private TextInputEditText acronym;
+    private TextInputEditText phrase;
+    private Button save;
+
     private View root;
     private int checkedButton = 0;
 
@@ -39,7 +46,7 @@ public class SettingsFragment extends Fragment {
     private RadioButton wb;
     private RadioButton by;
     private RadioButton yb;
-
+    
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -50,6 +57,37 @@ public class SettingsFragment extends Fragment {
         by = (RadioButton) root.findViewById(R.id.radioButton2);
         yb = (RadioButton) root.findViewById(R.id.radioButton);
 
+        acronym = (TextInputEditText) root.findViewById(R.id.acronym_id);
+        phrase = (TextInputEditText) root.findViewById(R.id.phrase_id);
+        save = (Button) root.findViewById(R.id.button30);
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String acro = acronym.getText().toString();
+                String phra = phrase.getText().toString();
+
+                if((acro.equals(null) || acro.equals("")) && (phra.equals(null) || phra.equals(""))) {
+                    Toast.makeText(getActivity(),"Enter Acronym and Phrase",Toast.LENGTH_SHORT).show();
+                }else if(acro.equals(null) || acro.equals("")) {
+                    Toast.makeText(getActivity(),"Enter Acronym",Toast.LENGTH_SHORT).show();
+                } else if (phra.equals(null) || phra.equals("")) {
+                    Toast.makeText(getActivity(),"Enter Phrase",Toast.LENGTH_SHORT).show();
+                } else {
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(acro.toUpperCase(), phra.toUpperCase());
+                    editor.apply();
+
+                    Toast.makeText(getActivity(),"Saved",Toast.LENGTH_SHORT).show();
+                    acronym.setText("");
+                    phrase.setText("");
+                    acronym.clearFocus();
+                    phrase.clearFocus();
+                }
+            }
+        });
+        
         settingTheme = ((MainActivity) getActivity()).currentTheme;
         n = root.findViewById(R.id.textView5);
         switch(settingTheme) {
@@ -71,8 +109,11 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).currentTheme = 1;
-                //n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
-                //getActivity().setTheme(DefaultColor);
+
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("theme", ((MainActivity) getActivity()).currentTheme);
+                editor.apply();
             }
         });
 
@@ -80,8 +121,11 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).currentTheme = 2;
-                //n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
-                //getActivity().setTheme(WhiteOnBlackTheme);
+
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("theme", ((MainActivity) getActivity()).currentTheme);
+                editor.apply();
             }
         });
 
@@ -89,8 +133,11 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).currentTheme = 3;
-                //n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
-                //getActivity().setTheme(BlueOnYellowTheme);
+
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("theme", ((MainActivity) getActivity()).currentTheme);
+                editor.apply();
             }
         });
 
@@ -98,8 +145,11 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).currentTheme = 4;
-                //n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
-                //getActivity().setTheme(YellowOnBlueTheme);
+
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("theme", ((MainActivity) getActivity()).currentTheme);
+                editor.apply();
             }
         });
 
@@ -159,6 +209,11 @@ public class SettingsFragment extends Fragment {
                 }
 
                 ((MainActivity) getActivity()).speed = settingSpeed;
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("speed", ((MainActivity) getActivity()).speed);
+                editor.apply();
+
                 //t.setText(Integer.toString(((MainActivity) getActivity()).speed));
             }
         });

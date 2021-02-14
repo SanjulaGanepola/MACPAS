@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class TutorialFragment extends Fragment {
 
-    private static final int NUM_PAGES = 2;
+    private static final int NUM_PAGES = 6;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -39,9 +39,10 @@ public class TutorialFragment extends Fragment {
         pagerAdapter = new ScreenSlidePagerAdapter(this.getActivity());
         ((ScreenSlidePagerAdapter) pagerAdapter).addFragment(new TutorialPage1());
         ((ScreenSlidePagerAdapter) pagerAdapter).addFragment(new TutorialPage2());
-
-
-
+        ((ScreenSlidePagerAdapter) pagerAdapter).addFragment(new TutorialPage3());
+        ((ScreenSlidePagerAdapter) pagerAdapter).addFragment(new TutorialPage4());
+        ((ScreenSlidePagerAdapter) pagerAdapter).addFragment(new TutorialPage5());
+        ((ScreenSlidePagerAdapter) pagerAdapter).addFragment(new TutorialPage6());
 
         viewPager.setAdapter(pagerAdapter);
 

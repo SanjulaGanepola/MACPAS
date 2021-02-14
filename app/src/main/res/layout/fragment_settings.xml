@@ -171,7 +171,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:focusableInTouchMode="true"
+            android:focusable="true">
 
             <TextView
                 android:id="@+id/textView9"
@@ -190,9 +192,12 @@
                 android:layout_marginRight="10sp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/acronym_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Acronym" />
+                    android:hint="Acronym"
+                    android:inputType="textCapCharacters"
+                    android:textAllCaps="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -204,9 +209,12 @@
                 android:layout_marginRight="10sp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phrase_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phrase" />
+                    android:hint="Phrase"
+                    android:inputType="textCapCharacters"
+                    android:textAllCaps="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -218,14 +226,6 @@
                 android:layout_marginRight="10sp"
                 android:text="Save" />
 
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10sp"
-                android:layout_marginRight="10sp"
-                android:text="Enter a New Abbreviation + Phrase"
-                android:textAlignment="center" />
         </LinearLayout>
 
     </LinearLayout>

@@ -48,13 +48,12 @@
                     android:layout_marginBottom="32dp"
                     android:layout_weight="0.05"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/features"
+                    android:src="@drawable/tap_to_speak"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/features"
-                    tools:srcCompat="@drawable/features" />
+                    tools:srcCompat="@drawable/tap_to_speak" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.45"
-            android:text="Features Overview"
+            android:text="Text-to-Speech"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="24sp"
@@ -91,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.3"
-            android:text="Space - Inserts a space\nBackspace - Removes a character\nAbbreviations - Expands to a phrase\nNumbers/Punctuations - Opens its subscreen\nClear - Clears message window"
+            android:text="Adjust phone volume to appropriate levels\nTap the message window to activate speech"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="14sp" />

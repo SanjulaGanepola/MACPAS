@@ -48,13 +48,12 @@
                     android:layout_marginBottom="32dp"
                     android:layout_weight="0.05"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/features"
+                    android:src="@drawable/subpage_scanning"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/features"
-                    tools:srcCompat="@drawable/features" />
+                    tools:srcCompat="@drawable/subpage_scanning" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.45"
-            android:text="Features Overview"
+            android:text="Subscreen Scanning"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="24sp"
@@ -91,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.3"
-            android:text="Space - Inserts a space\nBackspace - Removes a character\nAbbreviations - Expands to a phrase\nNumbers/Punctuations - Opens its subscreen\nClear - Clears message window"
+            android:text="Tap the screen to start scanning\nObserve scanning and listen to the audio cues\nTap the screen again to select the highlighted button"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="14sp" />
