@@ -89,7 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.3"
-            android:text="Adjust scanning speed using the slider\nSelect the desired colour theme"
+            android:text="Adjust scanning speed using the slider\nSelect the desired colour theme \n Add new abbreviations"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="14sp" />
