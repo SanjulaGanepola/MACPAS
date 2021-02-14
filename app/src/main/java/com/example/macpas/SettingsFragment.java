@@ -52,7 +52,6 @@ public class SettingsFragment extends Fragment {
 
         settingTheme = ((MainActivity) getActivity()).currentTheme;
         n = root.findViewById(R.id.textView5);
-        n.setText(Integer.toString(settingTheme));
         switch(settingTheme) {
             case 1:
                 defaultColor.setChecked(true);
@@ -72,7 +71,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).currentTheme = 1;
-                n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
+                //n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
                 //getActivity().setTheme(DefaultColor);
             }
         });
@@ -81,7 +80,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).currentTheme = 2;
-                n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
+                //n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
                 //getActivity().setTheme(WhiteOnBlackTheme);
             }
         });
@@ -90,7 +89,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).currentTheme = 3;
-                n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
+                //n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
                 //getActivity().setTheme(BlueOnYellowTheme);
             }
         });
@@ -99,14 +98,13 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((MainActivity) getActivity()).currentTheme = 4;
-                n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
+                //n.setText(Integer.toString(((MainActivity) getActivity()).currentTheme));
                 //getActivity().setTheme(YellowOnBlueTheme);
             }
         });
 
         settingSpeed = ((MainActivity) getActivity()).speed;
         t = root.findViewById(R.id.textView3);
-        t.setText(Integer.toString(settingSpeed));
 
         seekbar = (SeekBar) root.findViewById(R.id.seekBar3);
         //add code to update slider
@@ -161,7 +159,7 @@ public class SettingsFragment extends Fragment {
                 }
 
                 ((MainActivity) getActivity()).speed = settingSpeed;
-                t.setText(Integer.toString(((MainActivity) getActivity()).speed));
+                //t.setText(Integer.toString(((MainActivity) getActivity()).speed));
             }
         });
         return root;

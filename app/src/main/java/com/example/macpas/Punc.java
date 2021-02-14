@@ -38,6 +38,7 @@ public class Punc extends AppCompatActivity {
     private TextToSpeech mTTS;
     private int subSpeed;
     private int subTheme;
+    private String subText;
     private int buttonColor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +46,14 @@ public class Punc extends AppCompatActivity {
         setContentView(R.layout.activity_punc);
 
         Bundle extras = getIntent().getExtras();
-        String value = "";
-        if (extras != null) {
-            value = extras.getString("display");
-        }
-        subSpeed = extras.getInt("toPuncSpeed");
-        extras.remove("toPuncSpeed");
+        subText = extras.getString("toPuncDisplay");
         subdisplay = (TextView) findViewById(R.id.textView2);
-        subdisplay.setText(value);
-
+        subdisplay.setText(subText);
         subdisplay.setBackgroundColor(Color.WHITE);
         subdisplay.setTextColor(Color.BLACK);
+
+        subSpeed = extras.getInt("toPuncSpeed");
+        extras.remove("toPuncSpeed");
         subTheme = extras.getInt("toPuncTheme");
         extras.remove("toPuncTheme");
 
@@ -74,6 +72,7 @@ public class Punc extends AppCompatActivity {
             }
         });
 
+        /*
         question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,11 +161,11 @@ public class Punc extends AppCompatActivity {
                 openMain();
             }
         });
+        */
 
         setNewTheme();
 
         buttonScan = (Button) findViewById(R.id.button13);
-        buttonScan.setText(Integer.toString(subTheme));
         buttonScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -277,7 +276,7 @@ public class Punc extends AppCompatActivity {
     }
     public void openMain() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("display",subdisplay.getText());
+        intent.putExtra("toHomeDisplay",subdisplay.getText());
         intent.putExtra("toHomeSpeed",subSpeed);
         intent.putExtra("toHomeTheme",subTheme);
         startActivity(intent);
@@ -285,7 +284,7 @@ public class Punc extends AppCompatActivity {
 
     public void openNumPunc() {
         Intent intent = new Intent(this, NumPunc.class);
-        intent.putExtra("display",subdisplay.getText());
+        intent.putExtra("toSubDisplay",subdisplay.getText());
         intent.putExtra("toSubSpeed",subSpeed);
         intent.putExtra("toSubTheme",subTheme);
         startActivity(intent);

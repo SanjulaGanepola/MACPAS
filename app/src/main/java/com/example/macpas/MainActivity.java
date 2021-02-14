@@ -33,12 +33,14 @@ import android.widget.Toast;
 
 import static com.example.macpas.R.style.YellowOnBlueTheme;
 
-//MACPAS v1.2.0
+//MACPAS v1.2.1
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     int speed = 3000;
     int currentTheme = 1;
+    public StringBuilder currentDisplay = new StringBuilder("");
     //int currentFragment;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +53,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if(extras.containsKey("toHomeTheme")) {
                 currentTheme = extras.getInt("toHomeTheme");
             }
+            if(extras.containsKey("toHomeDisplay")) {
+                currentDisplay = new StringBuilder(extras.getString("toHomeDisplay"));
+                extras.remove("toHomeDisplay");
+            }
         }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-
-
+        drawer = findViewById(R.id.drawer_layout);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -70,10 +74,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         displayView(R.id.nav_home);
     }
 
+    public void setCurrentDisplay(String newCurrentDisplay) {
+        currentDisplay = new StringBuilder(newCurrentDisplay);
+    }
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        //currentFragment = menuItem.getItemId();
+        // currentFragment = menuItem.getItemId();
         displayView(menuItem.getItemId());
 
         return true;
@@ -117,22 +126,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             @Override
             public void onDrawerOpened(@NonNull View drawerView) {
-
-            }
-            @Override
-            public void onDrawerClosed(@NonNull View drawerView) {
-
-            }
-            @Override
-            public void onDrawerStateChanged(int newState) {
                 if(currentFragment == R.id.nav_home) {
+                    Context context = getApplicationContext();
+                    CharSequence text = "TESTING";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
                     HomeFragment hf = (HomeFragment) getSupportFragmentManager().findFragmentByTag("HOME");
+                    /*
                     if(hf.timer != null) {
-                        Context context = getApplicationContext();
-                        CharSequence text = "TESTING";
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
 
                         hf.resetColour(hf.current);
                         hf.current = 0;
@@ -141,9 +144,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         hf.timer = null;
                     }
                 }
+
+            }
+            @Override
+            public void onDrawerClosed(@NonNull View drawerView) {
+
+            }
+            @Override
+            public void onDrawerStateChanged(int newState) {
             }
         });
-         */
+        */
     }
 
     @Override

@@ -44,6 +44,7 @@
                     android:gravity="center_vertical|right"
                     android:hint="SELECT LETTER"
                     android:paddingLeft="10sp"
+                    android:textAllCaps="true"
                     android:textAlignment="textStart"
                     android:textSize="30sp" />
 

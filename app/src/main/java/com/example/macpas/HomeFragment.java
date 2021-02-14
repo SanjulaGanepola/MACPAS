@@ -1,5 +1,6 @@
 package com.example.macpas;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
@@ -15,8 +16,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import java.util.Locale;
@@ -46,16 +49,11 @@ public class HomeFragment extends Fragment {
     private int homeSpeed;
     private int homeTheme;
     private int buttonColor;
+    private String homeDisplay;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        root = inflater.inflate(R.layout.fragment_home, container, false);
-        Bundle extras = getActivity().getIntent().getExtras();
-
-        homeTheme = ((MainActivity) getActivity()).currentTheme;
-
-        homeSpeed = ((MainActivity) getActivity()).speed;
-        buttonABCD = (Button) root.findViewById(R.id.button24);
+        /*
         buttonABCD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +66,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        buttonEFGH = (Button) root.findViewById(R.id.button25);
         buttonEFGH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +78,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        buttonIJKLMN = (Button) root.findViewById(R.id.button26);
         buttonIJKLMN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +90,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        buttonOPQRST = (Button) root.findViewById(R.id.button27);
         buttonOPQRST.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,8 +102,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        buttonUVWXYZ = (Button) root.findViewById(R.id.button28);
-        buttonUVWXYZ.setOnClickListener(new View.OnClickListener() {
+       buttonUVWXYZ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(scanning) {
@@ -120,7 +114,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        clear = (ImageButton) root.findViewById(R.id.button20);
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,22 +126,7 @@ public class HomeFragment extends Fragment {
                 openClear();
             }
         });
-        display = (TextView) root.findViewById(R.id.textView4);
-        display.setBackgroundColor(Color.WHITE);
-        display.setTextColor(Color.BLACK);
-        display.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(scanning) {
-                    timer.cancel();
-                    scanning = false;
-                    resetColour(current);
-                    current = 0;
-                }
-                openSpeak();
-            }
-        });
-        numPunc = (ImageButton) root.findViewById(R.id.button21);
+
         numPunc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,7 +138,7 @@ public class HomeFragment extends Fragment {
                 openNumPunc();
             }
         });
-        backspace = (ImageButton) root.findViewById(R.id.button22);
+
         backspace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,7 +151,7 @@ public class HomeFragment extends Fragment {
                 openBackspace();
             }
         });
-        space = (ImageButton) root.findViewById(R.id.button23);
+
         space.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,7 +164,7 @@ public class HomeFragment extends Fragment {
                 openSpace();
             }
         });
-        abbrev = (ImageButton) root.findViewById(R.id.button29);
+
         abbrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -199,16 +177,53 @@ public class HomeFragment extends Fragment {
                 abbreviation((String) display.getText());
             }
         });
+        */
+
+        root = inflater.inflate(R.layout.fragment_home, container, false);
+        //Bundle extras = getActivity().getIntent().getExtras();
+
+        homeTheme = ((MainActivity) getActivity()).currentTheme;
+
+        homeSpeed = ((MainActivity) getActivity()).speed;
+        buttonABCD = (Button) root.findViewById(R.id.button24);
+        buttonEFGH = (Button) root.findViewById(R.id.button25);
+        buttonIJKLMN = (Button) root.findViewById(R.id.button26);
+        buttonOPQRST = (Button) root.findViewById(R.id.button27);
+        buttonUVWXYZ = (Button) root.findViewById(R.id.button28);
+        clear = (ImageButton) root.findViewById(R.id.button20);
+        numPunc = (ImageButton) root.findViewById(R.id.button21);
+        backspace = (ImageButton) root.findViewById(R.id.button22);
+        space = (ImageButton) root.findViewById(R.id.button23);
+        abbrev = (ImageButton) root.findViewById(R.id.button29);
+        display = (TextView) root.findViewById(R.id.textView4);
+        display.setBackgroundColor(Color.WHITE);
+        display.setTextColor(Color.BLACK);
+
+        display.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(scanning) {
+                    timer.cancel();
+                    scanning = false;
+                    resetColour(current);
+                    current = 0;
+                    ((MainActivity) getActivity()).drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                }
+
+                openSpeak();
+            }
+        });
 
         setNewTheme();
 
         buttonScan = (Button) root.findViewById(R.id.button12);
-        buttonScan.setText(Integer.toString(homeTheme));
         buttonScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if(scanning == false) {
+                    ((MainActivity) getActivity()).drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
                     //buttonScan.setText("SELECT");
                     scanning = true;
                     timer = new CountDownTimer(20*homeSpeed, homeSpeed) {
@@ -220,6 +235,7 @@ public class HomeFragment extends Fragment {
                             current = 0;
                             //buttonScan.setText("SCAN");
                             scanning = false;
+                            ((MainActivity) getActivity()).drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                         }
 
                         public void onTick(long millisUntilFinished) {
@@ -285,7 +301,7 @@ public class HomeFragment extends Fragment {
                             openBackspace();
                             break;
                         case 7:
-                            abbreviation((String) display.getText());
+                            abbreviation((String) homeDisplay);
                             break;
                         case 8:
                             openNumPunc();
@@ -296,15 +312,14 @@ public class HomeFragment extends Fragment {
                     }
 
                     scanning = false;
+                    ((MainActivity) getActivity()).drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                 }
             }
         });
 
-        String value = "";
-        if (extras != null) {
-            value = extras.getString("display");
-        }
-        display.setText(value);
+        homeDisplay = ((MainActivity) getActivity()).currentDisplay.toString();
+
+        display.setText(homeDisplay);
 
         mTTS = new TextToSpeech(this.getActivity(), new TextToSpeech.OnInitListener() {
             @Override
@@ -327,7 +342,7 @@ public class HomeFragment extends Fragment {
     }
     public void openABCD() {
         Intent intent = new Intent(this.getActivity(), ABCD.class);
-        intent.putExtra("display",display.getText());
+        intent.putExtra("toSubDisplay",homeDisplay);
         intent.putExtra("toSubSpeed",homeSpeed);
         intent.putExtra("toSubTheme", homeTheme);
         startActivity(intent);
@@ -335,7 +350,7 @@ public class HomeFragment extends Fragment {
 
     public void openEFGH() {
         Intent intent = new Intent(this.getActivity(), EFGH.class);
-        intent.putExtra("display",display.getText());
+        intent.putExtra("toSubDisplay",homeDisplay);
         intent.putExtra("toSubSpeed",homeSpeed);
         intent.putExtra("toSubTheme", homeTheme);
         startActivity(intent);
@@ -343,7 +358,7 @@ public class HomeFragment extends Fragment {
 
     public void openIJKLMN() {
         Intent intent = new Intent(this.getActivity(), IJKLMN.class);
-        intent.putExtra("display",display.getText());
+        intent.putExtra("toSubDisplay",homeDisplay);
         intent.putExtra("toSubSpeed",homeSpeed);
         intent.putExtra("toSubTheme", homeTheme);
         startActivity(intent);
@@ -351,7 +366,7 @@ public class HomeFragment extends Fragment {
 
     public void openOPQRST() {
         Intent intent = new Intent(this.getActivity(), OPQRST.class);
-        intent.putExtra("display",display.getText());
+        intent.putExtra("toSubDisplay",homeDisplay);
         intent.putExtra("toSubSpeed",homeSpeed);
         intent.putExtra("toSubTheme", homeTheme);
         startActivity(intent);
@@ -359,45 +374,43 @@ public class HomeFragment extends Fragment {
 
     public void openUVWXYZ() {
         Intent intent = new Intent(this.getActivity(), UVWXYZ.class);
-        intent.putExtra("display",display.getText());
+        intent.putExtra("toSubDisplay",homeDisplay);
         intent.putExtra("toSubSpeed",homeSpeed);
         intent.putExtra("toSubTheme", homeTheme);
         startActivity(intent);
     }
     public void openNumPunc() {
         Intent intent = new Intent(this.getActivity(), NumPunc.class);
-        intent.putExtra("display",display.getText());
+        intent.putExtra("toSubDisplay",homeDisplay);
         intent.putExtra("toSubSpeed",homeSpeed);
         intent.putExtra("toSubTheme", homeTheme);
         startActivity(intent);
     }
     public void openClear() {
         buttonScan.setEnabled(true);
-        String str = display.getText().toString();
-        if (str.length() >= 1) {
-            str = "";
-            display.setText(str);
-        }
+        homeDisplay = homeDisplay.substring(0, 0);
+        ((MainActivity) getActivity()).setCurrentDisplay(homeDisplay);
+        display.setText(homeDisplay);
     }
     public void openSpeak() {
         buttonScan.setEnabled(true);
-        String text = display.getText().toString();
+        String text = homeDisplay;
         mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
     public void openBackspace() {
         buttonScan.setEnabled(true);
-        String str = display.getText().toString();
-        if (str.length() >= 1) {
-            str = str.substring(0, str.length() - 1);
-            display.setText(str);
+        if (homeDisplay.length() >= 1) {
+            homeDisplay = homeDisplay.substring(0, homeDisplay.length() - 1);
+            ((MainActivity) getActivity()).setCurrentDisplay(homeDisplay);
+            display.setText(homeDisplay);
         }
     }
     public void openSpace() {
         buttonScan.setEnabled(true);
-        String str = display.getText().toString();
-        if (str.length() >= 1) {
-            str += " ";
-            display.setText(str);
+        if (homeDisplay.length() >= 1) {
+            homeDisplay += " ";
+            ((MainActivity) getActivity()).setCurrentDisplay(homeDisplay);
+            display.setText(homeDisplay);
         }
     }
     public void resetColour(int current){
@@ -413,38 +426,44 @@ public class HomeFragment extends Fragment {
     public void abbreviation(String displayText) {
         buttonScan.setEnabled(true);
         if(displayText.equals("TY")) {
-            display.setText("Thank you");
+            homeDisplay = "THANK YOU";
         } else if(displayText.equals("YW")) {
-            display.setText("You're welcome");
+            homeDisplay = "YOU'RE WELCOME";
         } else if(displayText.equals("DK")) {
-            display.setText("I don't know");
+            homeDisplay = "I DON'T KNOW";
         } else if(displayText.equals("TL")) {
-            display.setText("Talk to you later");
+            homeDisplay = "TALK TO YOU LATER";
         } else if(displayText.equals("LOL")) {
-            display.setText("Laughing out loud");
+            homeDisplay = "LAUGHING OUT LOUD";
         } else if(displayText.equals("NP")) {
-            display.setText("No problem");
+            homeDisplay = "NO PROBLEM";
         } else if(displayText.equals("HH")) {
-            display.setText("Hello. How are?");
+            homeDisplay = "HELLO. HOW ARE YOU?";
         } else if(displayText.equals("P")) {
-            display.setText("I have pain. Ask me where");
+            homeDisplay = "I HAVE PAIN. ASK ME WHERE";
         } else if(displayText.equals("IW")) {
-            display.setText("I have an itch please verbally scan my body to find out where.");
+            String text = "I HAVE AN ITCH PLEASE VERBALLY SCAN MY BODY TO FIND OUT WHERE.";
+            mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+            return;
         } else if(displayText.equals("SW")) {
-            display.setText("Something is wrong.  Ask me questions");
+            homeDisplay = "SOMETHING IS WRONG. ASK ME QUESTIONS";
         } else if(displayText.equals("T")) {
-            display.setText("I am tired and want to rest");
+            homeDisplay = "I AM TIRED AND WANT TO REST";
         } else if(displayText.equals("S")) {
-            display.setText("I want to stop now");
+            homeDisplay = "I WANT TO STOP NOW";
         } else if(displayText.equals("AP")) {
-            display.setText("Please add a phrase to my dictionary");
+            homeDisplay = "PLEASE ADD A PHRASE TO MY DICTIONARY";
         } else if(displayText.equals("H")) {
-            display.setText("I need help");
+            homeDisplay = "I NEED HELP";
         } else if(displayText.equals("GB")) {
-            display.setText("Good bye! Nice to see you");
+            homeDisplay = "GOODBYE! NICE TO SEE YOU";
         } else if(displayText.equals("M")) {
-            display.setText("Medication is not working");
+            homeDisplay = "MEDICATION IS NOT WORKING";
         }
+
+        display.setText(homeDisplay);
+
+        openSpeak();
     }
 
     public void setNewTheme() {

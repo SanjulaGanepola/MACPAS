@@ -42,6 +42,7 @@ public class Num extends AppCompatActivity {
     private TextToSpeech mTTS;
     private int subSpeed;
     private int subTheme;
+    private String subText;
     private int buttonColor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +50,17 @@ public class Num extends AppCompatActivity {
         setContentView(R.layout.activity_num);
 
         Bundle extras = getIntent().getExtras();
-        String value = "";
-        if (extras != null) {
-            value = extras.getString("display");
-        }
-        subSpeed = extras.getInt("toNumSpeed");
-        extras.remove("toNumSpeed");
+        subText = extras.getString("toNumDisplay");
         subdisplay = (TextView) findViewById(R.id.textView2);
-        subdisplay.setText(value);
-
+        subdisplay.setText(subText);
         subdisplay.setBackgroundColor(Color.WHITE);
         subdisplay.setTextColor(Color.BLACK);
+
+        subSpeed = extras.getInt("toNumSpeed");
+        extras.remove("toNumSpeed");
         subTheme = extras.getInt("toNumTheme");
         extras.remove("toNumTheme");
+
 
         zero = (Button) findViewById(R.id.button6);
         one = (Button) findViewById(R.id.button5);
@@ -82,6 +81,7 @@ public class Num extends AppCompatActivity {
             }
         });
 
+        /*
         zero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -226,11 +226,11 @@ public class Num extends AppCompatActivity {
                 openMain();
             }
         });
+        */
 
         setNewTheme();
 
         buttonScan = (Button) findViewById(R.id.button13);
-        buttonScan.setText(Integer.toString(subTheme));
         buttonScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -365,7 +365,7 @@ public class Num extends AppCompatActivity {
     }
     public void openMain() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("display",subdisplay.getText());
+        intent.putExtra("toHomeDisplay",subdisplay.getText());
         intent.putExtra("toHomeSpeed",subSpeed);
         intent.putExtra("toHomeTheme",subTheme);
         startActivity(intent);
@@ -373,7 +373,7 @@ public class Num extends AppCompatActivity {
 
     public void openNumPunc() {
         Intent intent = new Intent(this, NumPunc.class);
-        intent.putExtra("display",subdisplay.getText());
+        intent.putExtra("toSubDisplay",subdisplay.getText());
         intent.putExtra("toSubSpeed",subSpeed);
         intent.putExtra("toSubTheme",subTheme);
         startActivity(intent);

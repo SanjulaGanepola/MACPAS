@@ -37,6 +37,7 @@ public class EFGH extends AppCompatActivity {
 
     private int subSpeed;
     private int subTheme;
+    private String subText;
     private int buttonColor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +45,14 @@ public class EFGH extends AppCompatActivity {
         setContentView(R.layout.activity_efgh);
 
         Bundle extras = getIntent().getExtras();
-        String value = "";
-        if (extras != null) {
-            value = extras.getString("display");
-        }
+        subText = extras.getString("toSubDisplay");
         subdisplay = (TextView) findViewById(R.id.textView2);
-        subdisplay.setText(value);
-        subSpeed = extras.getInt("toSubSpeed");
-        extras.remove("toSubSpeed");
-
+        subdisplay.setText(subText);
         subdisplay.setBackgroundColor(Color.WHITE);
         subdisplay.setTextColor(Color.BLACK);
+
+        subSpeed = extras.getInt("toSubSpeed");
+        extras.remove("toSubSpeed");
         subTheme = extras.getInt("toSubTheme");
         extras.remove("toSubTheme");
 
@@ -71,6 +69,7 @@ public class EFGH extends AppCompatActivity {
             }
         });
 
+        /*
         E.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,11 +129,11 @@ public class EFGH extends AppCompatActivity {
                 openMain();
             }
         });
+        */
 
         setNewTheme();
 
         buttonScan = (Button) findViewById(R.id.button11);
-        buttonScan.setText(Integer.toString(subTheme));
         buttonScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -228,7 +227,7 @@ public class EFGH extends AppCompatActivity {
 
     public void openMain() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("display",subdisplay.getText());
+        intent.putExtra("toHomeDisplay",subdisplay.getText());
         intent.putExtra("toHomeSpeed",subSpeed);
         intent.putExtra("toHomeTheme",subTheme);
         startActivity(intent);

@@ -15,23 +15,42 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2"
+            android:layout_weight="0.1"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar3"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme" />
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/colorPrimary"
+                    android:minHeight="?attr/actionBarSize"
+                    android:theme="?attr/actionBarTheme" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:backgroundTint="#FFFFFF"
+                    android:foregroundTint="#F1F1F1"
+                    android:paddingStart="10sp"
+                    android:paddingTop="15sp"
+                    android:text="Settings"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/speed_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2"
+            android:layout_weight="0.1"
             android:orientation="vertical">
 
             <TextView
@@ -50,6 +69,31 @@
                 android:layout_height="wrap_content"
                 android:max="4"
                 android:progress="2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5sp"
+                    android:text="Slow"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingRight="5sp"
+                    android:text="Fast"
+                    android:textAlignment="viewEnd"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <ImageView
@@ -67,7 +111,7 @@
             android:id="@+id/theme_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_weight="0.1"
             android:orientation="vertical">
 
             <TextView
@@ -81,7 +125,8 @@
 
             <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="6sp">
 
                 <RadioButton
                     android:id="@+id/radioButton4"
@@ -111,7 +156,8 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_width="fill_parent"
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
             android:layout_height="5sp"
             android:paddingLeft="5dp"
             android:paddingTop="2dp"
@@ -121,60 +167,65 @@
             android:src="@android:drawable/divider_horizontal_bright" />
 
         <LinearLayout
-            android:id="@+id/voice_layout"
+            android:id="@+id/abbreviations"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10sp"
-                android:text="Voice Selection"
+                android:text="Abbreviations"
                 android:textColor="#008577"
                 android:textSize="18sp" />
 
-            <RadioGroup
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp">
 
-                <RadioButton
-                    android:id="@+id/radioButton5"
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="RadioButton" />
+                    android:hint="Acronym" />
 
-                <RadioButton
-                    android:id="@+id/radioButton6"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="RadioButton" />
-            </RadioGroup>
-        </LinearLayout>
+                    android:hint="Phrase" />
 
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="5sp"
-            android:paddingLeft="5dp"
-            android:paddingTop="2dp"
-            android:paddingRight="5dp"
-            android:paddingBottom="2dp"
-            android:scaleType="fitXY"
-            android:src="@android:drawable/divider_horizontal_bright" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:id="@+id/reset_save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <LinearLayout
+            <Button
+                android:id="@+id/button30"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"/>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:text="Save" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:text="Enter a New Abbreviation + Phrase"
+                android:textAlignment="center" />
         </LinearLayout>
 
     </LinearLayout>

@@ -35,6 +35,7 @@ public class NumPunc extends AppCompatActivity {
 
     private int subSpeed;
     private int subTheme;
+    private String subText;
     private int buttonColor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +43,16 @@ public class NumPunc extends AppCompatActivity {
         setContentView(R.layout.activity_num_punc);
 
         Bundle extras = getIntent().getExtras();
-        String value = "";
-        if (extras != null) {
-            value = extras.getString("display");
-        }
-        subSpeed = extras.getInt("toSubSpeed");
-        extras.remove("toSubSpeed");
+        subText = extras.getString("toSubDisplay");
         subdisplay = (TextView) findViewById(R.id.textView2);
-        subdisplay.setText(value);
-
+        subdisplay.setText(subText);
         subdisplay.setBackgroundColor(Color.WHITE);
         subdisplay.setTextColor(Color.BLACK);
+
+        subSpeed = extras.getInt("toSubSpeed");
+        extras.remove("toSubSpeed");
         subTheme = extras.getInt("toSubTheme");
         extras.remove("toSubTheme");
-
 
         cancel = (Button) findViewById(R.id.button8);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +63,9 @@ public class NumPunc extends AppCompatActivity {
         });
 
         num = (Button) findViewById(R.id.button6);
+        punc = (Button) findViewById(R.id.button4);
+
+        /*
         num.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +77,6 @@ public class NumPunc extends AppCompatActivity {
                 openNum();
             }
         });
-        punc = (Button) findViewById(R.id.button4);
         punc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,11 +88,11 @@ public class NumPunc extends AppCompatActivity {
                 openPunc();
             }
         });
+         */
 
         setNewTheme();
 
         buttonScan = (Button) findViewById(R.id.button10);
-        buttonScan.setText(Integer.toString(subTheme));
         buttonScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -174,7 +173,7 @@ public class NumPunc extends AppCompatActivity {
 
     public void openMain() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("display",subdisplay.getText());
+        intent.putExtra("toHomeDisplay",subdisplay.getText());
         intent.putExtra("toHomeSpeed",subSpeed);
         intent.putExtra("toHomeTheme",subTheme);
         startActivity(intent);
@@ -182,7 +181,7 @@ public class NumPunc extends AppCompatActivity {
 
     public void openNum() {
         Intent intent = new Intent(this, Num.class);
-        intent.putExtra("display",subdisplay.getText());
+        intent.putExtra("toNumDisplay",subdisplay.getText());
         intent.putExtra("toNumSpeed",subSpeed);
         intent.putExtra("toNumTheme",subTheme);
         startActivity(intent);
@@ -190,7 +189,7 @@ public class NumPunc extends AppCompatActivity {
 
     public void openPunc() {
         Intent intent = new Intent(this, Punc.class);
-        intent.putExtra("display",subdisplay.getText());
+        intent.putExtra("toPuncDisplay",subdisplay.getText());
         intent.putExtra("toPuncSpeed",subSpeed);
         intent.putExtra("toPuncTheme",subTheme);
         startActivity(intent);
