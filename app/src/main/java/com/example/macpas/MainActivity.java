@@ -161,29 +161,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void saveAdminData() {
-        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("TY", "THANK YOU");
-        editor.putString("YW", "YOU'RE WELCOME");
-        editor.putString("DK", "I DON'T KNOW");
-        editor.putString("TL", "TALK TO YOU LATER");
-        editor.putString("LOL", "LAUGHING OUT LOUD");
-        editor.putString("NP", "NO PROBLEM");
-        editor.putString("HH", "HELLO. HOW ARE YOU?");
-        editor.putString("P", "I HAVE PAIN. ASK ME WHERE");
-        editor.putString("IW", "I HAVE AN ITCH PLEASE VERBALLY SCAN MY BODY TO FIND OUT WHERE.");
-        editor.putString("SW", "SOMETHING IS WRONG. ASK ME QUESTIONS");
-        editor.putString("T", "I AM TIRED AND WANT TO REST");
-        editor.putString("S", "I WANT TO STOP NOW");
-        editor.putString("AP", "PLEASE ADD A PHRASE TO MY DICTIONARY");
-        editor.putString("H", "I NEED HELP");
-        editor.putString("GB", "GOODBYE! NICE TO SEE YOU");
-        editor.putString("M", "MEDICATION IS NOT WORKING");
-        editor.apply();
+        SharedPreferences isLoaded = getSharedPreferences("isLoaded", MODE_PRIVATE);
+
+        if(!isLoaded.contains("isLoaded")) {
+            SharedPreferences.Editor load = isLoaded.edit();
+            load.putString("isLoaded", "TRUE");
+            load.apply();
+
+            SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("TY", "THANK YOU");
+            editor.putString("YW", "YOU'RE WELCOME");
+            editor.putString("DK", "I DON'T KNOW");
+            editor.putString("TL", "TALK TO YOU LATER");
+            editor.putString("LOL", "LAUGHING OUT LOUD");
+            editor.putString("NP", "NO PROBLEM");
+            editor.putString("HH", "HELLO. HOW ARE YOU?");
+            editor.putString("P", "I HAVE PAIN. ASK ME WHERE");
+            editor.putString("IW", "I HAVE AN ITCH PLEASE VERBALLY SCAN MY BODY TO FIND OUT WHERE.");
+            editor.putString("SW", "SOMETHING IS WRONG. ASK ME QUESTIONS");
+            editor.putString("T", "I AM TIRED AND WANT TO REST");
+            editor.putString("S", "I WANT TO STOP NOW");
+            editor.putString("AP", "PLEASE ADD A PHRASE TO MY DICTIONARY");
+            editor.putString("H", "I NEED HELP");
+            editor.putString("GB", "GOODBYE! NICE TO SEE YOU");
+            editor.putString("M", "MEDICATION IS NOT WORKING");
+            editor.apply();
+        }
     }
 
     public void readSettings() {
-        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("settings", MODE_PRIVATE);
         speed = sharedPreferences.getInt("speed", 3000);
         currentTheme = sharedPreferences.getInt("theme", 1);
     }

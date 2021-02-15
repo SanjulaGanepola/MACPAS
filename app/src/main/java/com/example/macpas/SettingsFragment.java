@@ -3,12 +3,15 @@ package com.example.macpas;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +30,8 @@ import static com.example.macpas.R.style.YellowOnBlueTheme;
 import com.example.macpas.R;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Map;
+
 public class SettingsFragment extends Fragment {
 
     private SeekBar seekbar;
@@ -38,6 +43,7 @@ public class SettingsFragment extends Fragment {
     private TextInputEditText acronym;
     private TextInputEditText phrase;
     private Button save;
+    private TableLayout table;
 
     private View root;
     private int checkedButton = 0;
@@ -56,6 +62,9 @@ public class SettingsFragment extends Fragment {
         wb = (RadioButton) root.findViewById(R.id.radioButton3);
         by = (RadioButton) root.findViewById(R.id.radioButton2);
         yb = (RadioButton) root.findViewById(R.id.radioButton);
+
+        table = (TableLayout) root.findViewById(R.id.table_id);
+        updateCurrentAbbreviations();
 
         acronym = (TextInputEditText) root.findViewById(R.id.acronym_id);
         phrase = (TextInputEditText) root.findViewById(R.id.phrase_id);
@@ -84,6 +93,7 @@ public class SettingsFragment extends Fragment {
                     phrase.setText("");
                     acronym.clearFocus();
                     phrase.clearFocus();
+                    updateCurrentAbbreviations();
                 }
             }
         });
@@ -110,7 +120,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 ((MainActivity) getActivity()).currentTheme = 1;
 
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("settings", getActivity().MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt("theme", ((MainActivity) getActivity()).currentTheme);
                 editor.apply();
@@ -122,7 +132,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 ((MainActivity) getActivity()).currentTheme = 2;
 
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("settings", getActivity().MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt("theme", ((MainActivity) getActivity()).currentTheme);
                 editor.apply();
@@ -134,7 +144,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 ((MainActivity) getActivity()).currentTheme = 3;
 
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("settings", getActivity().MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt("theme", ((MainActivity) getActivity()).currentTheme);
                 editor.apply();
@@ -146,7 +156,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
                 ((MainActivity) getActivity()).currentTheme = 4;
 
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("settings", getActivity().MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt("theme", ((MainActivity) getActivity()).currentTheme);
                 editor.apply();
@@ -209,7 +219,7 @@ public class SettingsFragment extends Fragment {
                 }
 
                 ((MainActivity) getActivity()).speed = settingSpeed;
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("settings", getActivity().MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt("speed", ((MainActivity) getActivity()).speed);
                 editor.apply();
@@ -218,5 +228,43 @@ public class SettingsFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    public void updateCurrentAbbreviations() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+        Map<String, ?> keys = sharedPreferences.getAll();
+
+        for(Map.Entry<String,?> entry : keys.entrySet()){
+            String abbreviations = entry.getKey();
+            String phrases = entry.getValue().toString();
+
+
+
+
+            TableRow row = new TableRow(getActivity());
+            row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+            row.setWeightSum(3);
+
+            TextView a = new TextView(getActivity());
+            TableRow.LayoutParams lp = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.5f);
+            a.setText(abbreviations);
+            a.setLayoutParams(lp);
+            TextView p = new TextView(getActivity());
+            lp = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2.5f);
+            p.setText(phrases);
+            p.setLayoutParams(lp);
+
+            //a.setMaxLines(1);
+
+
+            row.addView(a);
+            row.addView(p);
+            table.addView(row);
+        }
+
+        //currentAbbreviations.setText(abbreviations.substring(0, abbreviations.length() - 1));
+        //currentPhrases.setText(phrases.substring(0, phrases.length() - 1));
+
+
     }
 }

@@ -37,7 +37,9 @@
                 android:includeFontPadding="true"
                 android:paddingLeft="10sp"
                 android:textAllCaps="true"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:ellipsize="end"
+                android:maxLines="1"/>
 
         </LinearLayout>
 

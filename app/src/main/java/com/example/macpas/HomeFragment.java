@@ -431,12 +431,15 @@ public class HomeFragment extends Fragment {
         String phrase = sharedPreferences.getString(displayText, "");
 
         if(phrase != ""){
-            homeDisplay = phrase;
-            display.setText(homeDisplay);
-            openSpeak();
+            if(displayText.equals("IW")){
+                mTTS.speak("I HAVE AN ITCH PLEASE VERBALLY SCAN MY BODY TO FIND OUT WHERE.", TextToSpeech.QUEUE_FLUSH, null);
+            } else {
+                homeDisplay = phrase;
+                ((MainActivity) getActivity()).setCurrentDisplay(homeDisplay);
+                display.setText(homeDisplay);
+                openSpeak();
+            }
         }
-
-
     }
 
     public void setNewTheme() {

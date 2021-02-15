@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
@@ -45,6 +46,9 @@ public class ABCD extends AppCompatActivity {
     private int subTheme;
     private String subText;
     private int buttonColor;
+
+    private boolean isStarted = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,77 +143,22 @@ public class ABCD extends AppCompatActivity {
 
         setNewTheme();
 
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 5s = 5000ms
+                if(!isStarted){
+                    scanning();
+                }
+            }
+        }, 1000);
+
         buttonScan = (Button) findViewById(R.id.button10);
         buttonScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(scanning == false) {
-                    //buttonScan.setText("SELECT");
-                    scanning = true;
-                    timer = new CountDownTimer(10*subSpeed, subSpeed) {
-                        public void onFinish() {
-                            // When timer is finished
-                            // Execute your code here
-                            Button prevButton = (Button) findViewById(arrButton[current - 1]);
-                            prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
-                            current = 0;
-                            //buttonScan.setText("SCAN");
-                            scanning = false;
-                        }
-
-                        public void onTick(long millisUntilFinished) {
-                            // millisUntilFinished    The amount of time until finished.
-                            Button currButton = (Button) findViewById(arrButton[current]);
-                            currButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#3EB0A6")));
-                            mTTS.speak((String)currButton.getContentDescription(), TextToSpeech.QUEUE_FLUSH, null);
-                            if (current > 0) {
-                                Button prevButton = (Button) findViewById(arrButton[current - 1]);
-                                prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
-                            }
-                            current++;
-                        }
-                    }.start();
-                }
-                else{
-                    buttonScan.setEnabled(false);
-                    timer.cancel();
-                    //buttonScan.setText("SCAN");
-                    int temp = current-1;
-                    resetColour(current);
-                    current = 0;
-                    String str;
-
-                    if(temp > 4) {
-                        temp = temp - 5;
-                    }
-                    switch(temp){
-                        case 0:
-                            str = subdisplay.getText().toString();
-                            str += "A";
-                            subdisplay.setText(str);
-                            break;
-                        case 1:
-                            str = subdisplay.getText().toString();
-                            str += "B";
-                            subdisplay.setText(str);
-                            break;
-                        case 2:
-                            str = subdisplay.getText().toString();
-                            str += "C";
-                            subdisplay.setText(str);
-                            break;
-                        case 3:
-                            str = subdisplay.getText().toString();
-                            str += "D";
-                            subdisplay.setText(str);
-                            break;
-
-                    }
-                    openMain();
-                    scanning = false;
-                }
-
+                scanning();
             }
 
         });
@@ -289,5 +238,75 @@ public class ABCD extends AppCompatActivity {
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+    }
+
+    public void scanning() {
+        isStarted = true;
+
+        if(scanning == false) {
+            //buttonScan.setText("SELECT");
+            scanning = true;
+            timer = new CountDownTimer(10*subSpeed, subSpeed) {
+                public void onFinish() {
+                    // When timer is finished
+                    // Execute your code here
+                    Button prevButton = (Button) findViewById(arrButton[current - 1]);
+                    prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+                    current = 0;
+                    //buttonScan.setText("SCAN");
+                    scanning = false;
+                }
+
+                public void onTick(long millisUntilFinished) {
+                    // millisUntilFinished    The amount of time until finished.
+                    Button currButton = (Button) findViewById(arrButton[current]);
+                    currButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#3EB0A6")));
+                    mTTS.speak((String)currButton.getContentDescription(), TextToSpeech.QUEUE_FLUSH, null);
+                    if (current > 0) {
+                        Button prevButton = (Button) findViewById(arrButton[current - 1]);
+                        prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+                    }
+                    current++;
+                }
+            }.start();
+        }
+        else{
+            buttonScan.setEnabled(false);
+            timer.cancel();
+            //buttonScan.setText("SCAN");
+            int temp = current-1;
+            resetColour(current);
+            current = 0;
+            String str;
+
+            if(temp > 4) {
+                temp = temp - 5;
+            }
+            switch(temp){
+                case 0:
+                    str = subdisplay.getText().toString();
+                    str += "A";
+                    subdisplay.setText(str);
+                    break;
+                case 1:
+                    str = subdisplay.getText().toString();
+                    str += "B";
+                    subdisplay.setText(str);
+                    break;
+                case 2:
+                    str = subdisplay.getText().toString();
+                    str += "C";
+                    subdisplay.setText(str);
+                    break;
+                case 3:
+                    str = subdisplay.getText().toString();
+                    str += "D";
+                    subdisplay.setText(str);
+                    break;
+
+            }
+            openMain();
+            scanning = false;
+        }
     }
 }

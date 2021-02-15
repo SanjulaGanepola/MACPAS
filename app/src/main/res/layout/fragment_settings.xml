@@ -170,17 +170,17 @@
             android:id="@+id/abbreviations"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
+            android:layout_weight="0.1"
+            android:focusable="true"
             android:focusableInTouchMode="true"
-            android:focusable="true">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10sp"
-                android:text="Abbreviations"
+                android:text="Add Abbreviations"
                 android:textColor="#008577"
                 android:textSize="18sp" />
 
@@ -197,7 +197,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Acronym"
                     android:inputType="textCapCharacters"
-                    android:textAllCaps="true" />
+                    android:textAllCaps="true"
+                    android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -214,7 +215,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Phrase"
                     android:inputType="textCapCharacters"
-                    android:textAllCaps="true" />
+                    android:textAllCaps="true"
+                    android:textSize="14sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -226,6 +228,51 @@
                 android:layout_marginRight="10sp"
                 android:text="Save" />
 
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="5sp"
+            android:paddingLeft="5dp"
+            android:paddingTop="2dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="2dp"
+            android:scaleType="fitXY"
+            android:src="@android:drawable/divider_horizontal_bright" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:text="Current Abbreviations"
+                android:textColor="#008577"
+                android:textSize="18sp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TableLayout
+                        android:id="@+id/table_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10sp"
+                        android:paddingLeft="10sp"/>
+                </LinearLayout>
+            </ScrollView>
         </LinearLayout>
 
     </LinearLayout>

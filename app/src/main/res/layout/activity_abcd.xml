@@ -46,7 +46,9 @@
                     android:paddingLeft="10sp"
                     android:textAllCaps="true"
                     android:textAlignment="textStart"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    android:ellipsize="end"
+                    android:maxLines="3" />
 
             </LinearLayout>
 
