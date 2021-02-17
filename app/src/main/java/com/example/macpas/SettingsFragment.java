@@ -94,13 +94,13 @@ public class SettingsFragment extends Fragment {
                     //phraseLayout.setBoxCornerRadii(4,4,4,4);
                     //phraseLayout.setBackgroundColor(Color.GRAY);
                     phrase.setText("");
-                    phrase.setHint("");
-
+                    phraseLayout.setHint("");
                 } else {
                     phrase.setFocusable(true);
                     phrase.setEnabled(true);
                     phrase.setCursorVisible(true);
                     phrase.setFocusableInTouchMode(true);
+                    phraseLayout.setHint("Phrase");
 
                     //phraseLayout.setBackgroundColor(0);
                     //phrase.setKeyListener(null);
@@ -130,7 +130,7 @@ public class SettingsFragment extends Fragment {
                         acronym.setText("");
                         updateCurrentAbbreviations();
                     } else {
-                        Toast.makeText(getActivity(),acro + "Not Found",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),acro + " Not Found",Toast.LENGTH_SHORT).show();
                     }
                 }
             } else {

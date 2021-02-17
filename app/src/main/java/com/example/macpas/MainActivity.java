@@ -35,7 +35,7 @@ import android.widget.Toast;
 
 import static com.example.macpas.R.style.YellowOnBlueTheme;
 
-//MACPAS v1.2.1
+//MACPAS v1.2.2
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     int speed = 3000;

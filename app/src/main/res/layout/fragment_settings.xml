@@ -217,13 +217,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10sp"
-                        android:layout_marginRight="10sp">
+                        android:layout_marginRight="10sp"
+                        android:hint="Phrase">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/phrase_id"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Phrase"
                             android:inputType="textCapCharacters"
                             android:textAllCaps="true"
                             android:textSize="14sp" />
