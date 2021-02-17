@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layout_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:background="#FFFFFF">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:cursorVisible="false"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical|left"
+                    android:hint="SELECT LETTER"
+                    android:includeFontPadding="true"
+                    android:maxLines="1"
+                    android:paddingLeft="10sp"
+                    android:textAllCaps="true"
+                    android:textSize="40sp" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <Button
+                    android:id="@+id/button12"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="20"
+                    android:alpha="0"
+                    android:maxLines="1"
+                    android:text="SCAN"
+                    app:autoSizeMaxTextSize="20sp"
+                    app:autoSizeMinTextSize="10sp"
+                    app:autoSizeStepGranularity="1sp"
+                    app:autoSizeTextType="uniform" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/layout_middle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/button24"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:contentDescription="a"
+                            android:text="@string/a_b_c_d"
+                            android:textSize="40sp" />
+
+                        <Button
+                            android:id="@+id/button25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:contentDescription="e"
+                            android:text="@string/e_f_g_h"
+                            android:textSize="40sp" />
+
+                        <Button
+                            android:id="@+id/button26"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:contentDescription="i"
+                            android:text="@string/i_j_k_l_m_n"
+                            android:textSize="40sp" />
+
+                        <Button
+                            android:id="@+id/button27"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:contentDescription="o"
+                            android:text="@string/o_p_q_r_s_t"
+                            android:textSize="40sp" />
+
+                        <Button
+                            android:id="@+id/button28"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:contentDescription="u"
+                            android:text="@string/u_v_w_x_y_z"
+                            android:textSize="40sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_bottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/button23"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:contentDescription="SPACE"
+                            app:srcCompat="@drawable/ic_baseline_space_bar_32"
+
+                            />
+
+                        <ImageButton
+                            android:id="@+id/button22"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:contentDescription="BACKSPACE"
+                            android:tint="#000000"
+                            app:srcCompat="@drawable/ic_baseline_keyboard_backspace_32" />
+
+                        <ImageButton
+                            android:id="@+id/button29"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:contentDescription="Abbreviation"
+                            android:tint="#000000"
+
+                            app:srcCompat="@drawable/ic_baseline_star_32" />
+
+                        <ImageButton
+                            android:id="@+id/button21"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:contentDescription="Numbers"
+                            android:tint="#000000"
+
+                            app:srcCompat="@drawable/_32crisp" />
+
+                        <ImageButton
+                            android:id="@+id/button20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:contentDescription="CLEAR"
+                            app:srcCompat="@drawable/ic_baseline_clear_32" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.84"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/splashscreenback" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/splashscreenwords" />
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

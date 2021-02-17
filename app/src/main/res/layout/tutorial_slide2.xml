@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="0.45"
             android:orientation="horizontal">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +45,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginTop="32dp"
-                    android:layout_marginBottom="32dp"
                     android:layout_weight="0.05"
                     android:scaleType="centerCrop"
                     android:src="@drawable/features"
@@ -80,7 +79,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1.45"
+            android:layout_weight="1.5"
             android:text="Features Overview"
             android:textAlignment="center"
             android:textColor="@android:color/white"
@@ -91,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.3"
-            android:text="Space - Inserts a space\nBackspace - Removes a character\nAbbreviations - Expands to a phrase\nNumbers/Punctuations - Opens its subscreen\nClear - Clears message window"
+            android:text="Space - Inserts a space\nBackspace - Removes a character\nAbbreviations - Expands phrase (TY* = THANK YOU)\nNumbers/Punctuations - Opens its subscreen\nClear - Clears message window"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="14sp" />

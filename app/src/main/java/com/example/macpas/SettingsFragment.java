@@ -102,8 +102,7 @@ public class SettingsFragment extends Fragment {
                     phrase.setCursorVisible(true);
                     phrase.setFocusableInTouchMode(true);
 
-                    phraseLayout.setBackgroundColor(0);
-                    phrase.setHint("Phrase");
+                    //phraseLayout.setBackgroundColor(0);
                     //phrase.setKeyListener(null);
                 }
             }

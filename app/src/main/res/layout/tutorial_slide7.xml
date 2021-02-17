@@ -47,12 +47,12 @@
                     android:layout_marginTop="32dp"
                     android:layout_weight="0.05"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/side_panel2"
+                    android:src="@drawable/settings_page2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@drawable/side_panel2" />
+                    tools:srcCompat="@drawable/settings_page2" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -69,7 +69,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.577"
-                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
                     tools:layout_editor_absoluteX="0dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -79,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
-            android:text="Side Panel"
+            android:text="Settings Screen - Abbreviations"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="24sp"
@@ -89,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.3"
-            android:text="Swipe from the left to open the side panel\nNavigate to the home screen\nView the tutorial screen\nAdjust the app settings"
+            android:text="Toggle between adding and removing abbreviations \n Add abbreviations by typing acronym and phrase \n Remove abbreviations by typing acronym \n Press save to apply changes \n View all current abbreviations"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="14sp" />
