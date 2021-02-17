@@ -280,7 +280,7 @@ public class OPQRST extends AppCompatActivity {
         if(scanning == false) {
             //buttonScan.setText("SELECT");
             scanning = true;
-            timer = new CountDownTimer(10*subSpeed, subSpeed) {
+            timer = new CountDownTimer(14*subSpeed, subSpeed) {
                 public void onFinish() {
                     // When timer is finished
                     // Execute your code here
@@ -313,31 +313,41 @@ public class OPQRST extends AppCompatActivity {
             current = 0;
             String str;
 
-            if(temp > 4) {
-                temp = temp - 5;
+            if(temp > 6) {
+                temp = temp - 7;
             }
+
             switch(temp){
                 case 0:
                     str = subdisplay.getText().toString();
-                    str += "A";
+                    str += "O";
                     subdisplay.setText(str);
                     break;
                 case 1:
                     str = subdisplay.getText().toString();
-                    str += "B";
+                    str += "P";
                     subdisplay.setText(str);
                     break;
                 case 2:
                     str = subdisplay.getText().toString();
-                    str += "C";
+                    str += "Q";
                     subdisplay.setText(str);
                     break;
                 case 3:
                     str = subdisplay.getText().toString();
-                    str += "D";
+                    str += "R";
                     subdisplay.setText(str);
                     break;
-
+                case 4:
+                    str = subdisplay.getText().toString();
+                    str += "S";
+                    subdisplay.setText(str);
+                    break;
+                case 5:
+                    str = subdisplay.getText().toString();
+                    str += "T";
+                    subdisplay.setText(str);
+                    break;
             }
             openMain();
             scanning = false;

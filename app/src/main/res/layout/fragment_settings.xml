@@ -212,6 +212,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/phraseLayout_id"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -235,12 +236,15 @@
                         android:layout_weight="0.1"
                         android:orientation="horizontal">
 
-                        <Switch
-                            android:id="@+id/switch1"
+                        <ToggleButton
+                            android:id="@+id/toggleButton2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10sp"
                             android:layout_weight="1"
-                            android:text="Switch" />
+                            android:text="ToggleButton"
+                            android:textOff="ADD"
+                            android:textOn="REMOVE" />
 
                         <Button
                             android:id="@+id/button30"
@@ -248,6 +252,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10sp"
                             android:layout_marginRight="10sp"
+                            android:layout_weight="1"
                             android:text="Save" />
                     </LinearLayout>
 

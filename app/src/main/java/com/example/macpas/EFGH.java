@@ -275,25 +275,26 @@ public class EFGH extends AppCompatActivity {
             if(temp > 4) {
                 temp = temp - 5;
             }
+
             switch(temp){
                 case 0:
                     str = subdisplay.getText().toString();
-                    str += "A";
+                    str += "E";
                     subdisplay.setText(str);
                     break;
                 case 1:
                     str = subdisplay.getText().toString();
-                    str += "B";
+                    str += "F";
                     subdisplay.setText(str);
                     break;
                 case 2:
                     str = subdisplay.getText().toString();
-                    str += "C";
+                    str += "G";
                     subdisplay.setText(str);
                     break;
                 case 3:
                     str = subdisplay.getText().toString();
-                    str += "D";
+                    str += "H";
                     subdisplay.setText(str);
                     break;
 

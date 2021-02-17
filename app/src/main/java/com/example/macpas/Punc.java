@@ -286,7 +286,7 @@ public class Punc extends AppCompatActivity {
         if(scanning == false) {
             //buttonScan.setText("SELECT");
             scanning = true;
-            timer = new CountDownTimer(10*subSpeed, subSpeed) {
+            timer = new CountDownTimer(14*subSpeed, subSpeed) {
                 public void onFinish() {
                     // When timer is finished
                     // Execute your code here
@@ -319,33 +319,51 @@ public class Punc extends AppCompatActivity {
             current = 0;
             String str;
 
-            if(temp > 4) {
-                temp = temp - 5;
+            if(temp > 6) {
+                temp = temp - 7;
             }
+
             switch(temp){
                 case 0:
                     str = subdisplay.getText().toString();
-                    str += "A";
+                    str += "?";
                     subdisplay.setText(str);
+                    openMain();
                     break;
                 case 1:
                     str = subdisplay.getText().toString();
-                    str += "B";
+                    str += "!";
                     subdisplay.setText(str);
+                    openMain();
                     break;
                 case 2:
                     str = subdisplay.getText().toString();
-                    str += "C";
+                    str += ",";
                     subdisplay.setText(str);
+                    openMain();
                     break;
                 case 3:
                     str = subdisplay.getText().toString();
-                    str += "D";
+                    str += "&";
                     subdisplay.setText(str);
+                    openMain();
                     break;
-
+                case 4:
+                    str = subdisplay.getText().toString();
+                    str += ".";
+                    subdisplay.setText(str);
+                    openMain();
+                    break;
+                case 5:
+                    str = subdisplay.getText().toString();
+                    str += "@";
+                    subdisplay.setText(str);
+                    openMain();
+                    break;
+                case 6:
+                    openNumPunc();
+                    break;
             }
-            openMain();
             scanning = false;
         }
     }

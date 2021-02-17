@@ -1,12 +1,16 @@
 package com.example.macpas;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
@@ -14,6 +18,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -29,6 +34,7 @@ import static com.example.macpas.R.style.YellowOnBlueTheme;
 
 import com.example.macpas.R;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Map;
 
@@ -44,6 +50,8 @@ public class SettingsFragment extends Fragment {
     private TextInputEditText phrase;
     private Button save;
     private TableLayout table;
+    private ToggleButton toggle;
+    private TextInputLayout phraseLayout;
 
     private View root;
     private int checkedButton = 0;
@@ -69,10 +77,65 @@ public class SettingsFragment extends Fragment {
         acronym = (TextInputEditText) root.findViewById(R.id.acronym_id);
         phrase = (TextInputEditText) root.findViewById(R.id.phrase_id);
         save = (Button) root.findViewById(R.id.button30);
+        toggle = (ToggleButton) root.findViewById(R.id.toggleButton2);
+        phraseLayout = (TextInputLayout) root.findViewById(R.id.phraseLayout_id);
+
+        toggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearFocusHideKeyboard();
+
+                if (toggle.isChecked()) {
+                    phrase.setFocusable(false);
+                    phrase.setEnabled(false);
+                    phrase.setCursorVisible(false);
+                    phrase.setFocusableInTouchMode(false);
+
+                    //phraseLayout.setBoxCornerRadii(4,4,4,4);
+                    //phraseLayout.setBackgroundColor(Color.GRAY);
+                    phrase.setText("");
+                    phrase.setHint("");
+
+                } else {
+                    phrase.setFocusable(true);
+                    phrase.setEnabled(true);
+                    phrase.setCursorVisible(true);
+                    phrase.setFocusableInTouchMode(true);
+
+                    phraseLayout.setBackgroundColor(0);
+                    phrase.setHint("Phrase");
+                    //phrase.setKeyListener(null);
+                }
+            }
+        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            clearFocusHideKeyboard();
+
+            if(toggle.isChecked()) {
+                //REMOVE
+                String acro = acronym.getText().toString();
+
+                if(acro.equals(null) || acro.equals("")) {
+                    Toast.makeText(getActivity(),"Enter Acronym",Toast.LENGTH_SHORT).show();
+                } else {
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                    if(sharedPreferences.contains(acro.toUpperCase())){
+                        Toast.makeText(getActivity(),"Removed: " + acro,Toast.LENGTH_SHORT).show();
+                        editor.remove(acro.toUpperCase());
+                        editor.apply();
+                        acronym.setText("");
+                        updateCurrentAbbreviations();
+                    } else {
+                        Toast.makeText(getActivity(),acro + "Not Found",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            } else {
+                //ADD
                 String acro = acronym.getText().toString();
                 String phra = phrase.getText().toString();
 
@@ -88,13 +151,14 @@ public class SettingsFragment extends Fragment {
                     editor.putString(acro.toUpperCase(), phra.toUpperCase());
                     editor.apply();
 
-                    Toast.makeText(getActivity(),"Saved",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Added: " + acro,Toast.LENGTH_SHORT).show();
                     acronym.setText("");
                     phrase.setText("");
-                    acronym.clearFocus();
-                    phrase.clearFocus();
                     updateCurrentAbbreviations();
                 }
+            }
+
+
             }
         });
         
@@ -118,6 +182,8 @@ public class SettingsFragment extends Fragment {
         defaultColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearFocusHideKeyboard();
+
                 ((MainActivity) getActivity()).currentTheme = 1;
 
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("settings", getActivity().MODE_PRIVATE);
@@ -130,6 +196,8 @@ public class SettingsFragment extends Fragment {
         wb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearFocusHideKeyboard();
+
                 ((MainActivity) getActivity()).currentTheme = 2;
 
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("settings", getActivity().MODE_PRIVATE);
@@ -142,6 +210,8 @@ public class SettingsFragment extends Fragment {
         by.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearFocusHideKeyboard();
+
                 ((MainActivity) getActivity()).currentTheme = 3;
 
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("settings", getActivity().MODE_PRIVATE);
@@ -154,6 +224,8 @@ public class SettingsFragment extends Fragment {
         yb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearFocusHideKeyboard();
+
                 ((MainActivity) getActivity()).currentTheme = 4;
 
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("settings", getActivity().MODE_PRIVATE);
@@ -199,6 +271,8 @@ public class SettingsFragment extends Fragment {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
+                clearFocusHideKeyboard();
+
                 // TODO Auto-generated method stub
                 switch(progress) {
                     case 0:
@@ -231,15 +305,13 @@ public class SettingsFragment extends Fragment {
     }
 
     public void updateCurrentAbbreviations() {
+        table.removeAllViews();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
         Map<String, ?> keys = sharedPreferences.getAll();
 
         for(Map.Entry<String,?> entry : keys.entrySet()){
             String abbreviations = entry.getKey();
             String phrases = entry.getValue().toString();
-
-
-
 
             TableRow row = new TableRow(getActivity());
             row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
@@ -254,9 +326,6 @@ public class SettingsFragment extends Fragment {
             p.setText(phrases);
             p.setLayoutParams(lp);
 
-            //a.setMaxLines(1);
-
-
             row.addView(a);
             row.addView(p);
             table.addView(row);
@@ -264,7 +333,12 @@ public class SettingsFragment extends Fragment {
 
         //currentAbbreviations.setText(abbreviations.substring(0, abbreviations.length() - 1));
         //currentPhrases.setText(phrases.substring(0, phrases.length() - 1));
+    }
 
-
+    public void clearFocusHideKeyboard() {
+        acronym.clearFocus();
+        phrase.clearFocus();
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
     }
 }

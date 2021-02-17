@@ -212,7 +212,7 @@ public class NumPunc extends AppCompatActivity {
         if(scanning == false) {
             //buttonScan.setText("SELECT");
             scanning = true;
-            timer = new CountDownTimer(10*subSpeed, subSpeed) {
+            timer = new CountDownTimer(6*subSpeed, subSpeed) {
                 public void onFinish() {
                     // When timer is finished
                     // Execute your code here
@@ -245,33 +245,21 @@ public class NumPunc extends AppCompatActivity {
             current = 0;
             String str;
 
-            if(temp > 4) {
-                temp = temp - 5;
+            if(temp > 2) {
+                temp = temp - 3;
             }
+
             switch(temp){
                 case 0:
-                    str = subdisplay.getText().toString();
-                    str += "A";
-                    subdisplay.setText(str);
+                    openNum();
                     break;
                 case 1:
-                    str = subdisplay.getText().toString();
-                    str += "B";
-                    subdisplay.setText(str);
+                    openPunc();
                     break;
                 case 2:
-                    str = subdisplay.getText().toString();
-                    str += "C";
-                    subdisplay.setText(str);
+                    openMain();
                     break;
-                case 3:
-                    str = subdisplay.getText().toString();
-                    str += "D";
-                    subdisplay.setText(str);
-                    break;
-
             }
-            openMain();
             scanning = false;
         }
     }

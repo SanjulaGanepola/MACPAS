@@ -357,7 +357,7 @@ public class Num extends AppCompatActivity {
         if(scanning == false) {
             //buttonScan.setText("SELECT");
             scanning = true;
-            timer = new CountDownTimer(10*subSpeed, subSpeed) {
+            timer = new CountDownTimer(22*subSpeed, subSpeed) {
                 public void onFinish() {
                     // When timer is finished
                     // Execute your code here
@@ -390,33 +390,75 @@ public class Num extends AppCompatActivity {
             current = 0;
             String str;
 
-            if(temp > 4) {
-                temp = temp - 5;
+            if(temp > 10) {
+                temp = temp - 11;
             }
+
             switch(temp){
                 case 0:
                     str = subdisplay.getText().toString();
-                    str += "A";
+                    str += "0";
                     subdisplay.setText(str);
+                    openMain();
                     break;
                 case 1:
                     str = subdisplay.getText().toString();
-                    str += "B";
+                    str += "1";
                     subdisplay.setText(str);
+                    openMain();
                     break;
                 case 2:
                     str = subdisplay.getText().toString();
-                    str += "C";
+                    str += "2";
                     subdisplay.setText(str);
+                    openMain();
                     break;
                 case 3:
                     str = subdisplay.getText().toString();
-                    str += "D";
+                    str += "3";
                     subdisplay.setText(str);
+                    openMain();
                     break;
-
+                case 4:
+                    str = subdisplay.getText().toString();
+                    str += "4";
+                    subdisplay.setText(str);
+                    openMain();
+                    break;
+                case 5:
+                    str = subdisplay.getText().toString();
+                    str += "5";
+                    subdisplay.setText(str);
+                    openMain();
+                    break;
+                case 6:
+                    str = subdisplay.getText().toString();
+                    str += "6";
+                    subdisplay.setText(str);
+                    openMain();
+                    break;
+                case 7:
+                    str = subdisplay.getText().toString();
+                    str += "7";
+                    subdisplay.setText(str);
+                    openMain();
+                    break;
+                case 8:
+                    str = subdisplay.getText().toString();
+                    str += "8";
+                    subdisplay.setText(str);
+                    openMain();
+                    break;
+                case 9:
+                    str = subdisplay.getText().toString();
+                    str += "9";
+                    subdisplay.setText(str);
+                    openMain();
+                    break;
+                case 10:
+                    openNumPunc();
+                    break;
             }
-            openMain();
             scanning = false;
         }
     }
