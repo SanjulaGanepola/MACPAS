@@ -1,13 +1,16 @@
 package com.example.macpas;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -19,9 +22,11 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -37,6 +42,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class SettingsFragment extends Fragment {
 
@@ -60,11 +67,31 @@ public class SettingsFragment extends Fragment {
     private RadioButton wb;
     private RadioButton by;
     private RadioButton yb;
+
+    private Toolbar tb;
     
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.fragment_settings, container, false);
+
+//        tb = (Toolbar) root.findViewById(R.id.toolbar3);
+//        ((AppCompatActivity) getActivity()).setSupportActionBar(tb);
+
+        //((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //((MainActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+//        tb.setNavigationIcon(getResources().getDrawable(R.drawable.ic_macpas_logo));
+//        tb.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //What to do on back clicked
+//
+//            }
+//        });
+
+
 
         defaultColor = (RadioButton) root.findViewById(R.id.radioButton4);
         wb = (RadioButton) root.findViewById(R.id.radioButton3);
@@ -146,14 +173,50 @@ public class SettingsFragment extends Fragment {
                     Toast.makeText(getActivity(),"Enter Phrase",Toast.LENGTH_SHORT).show();
                 } else {
                     SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(acro.toUpperCase(), phra.toUpperCase());
-                    editor.apply();
+                    if(sharedPreferences.contains(acro.toUpperCase())) {
+                        //Override Abbreviation
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setCancelable(false);
+                        builder.setTitle("Override Abbreviation: " + acro.toUpperCase());
+                        builder.setMessage("Old Phrase: " + sharedPreferences.getString(acro.toUpperCase(), "") + "\nNew Phrase: " + phra.toUpperCase());
 
-                    Toast.makeText(getActivity(),"Added: " + acro,Toast.LENGTH_SHORT).show();
-                    acronym.setText("");
-                    phrase.setText("");
-                    updateCurrentAbbreviations();
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String acro = acronym.getText().toString();
+                                String phra = phrase.getText().toString();
+
+                                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(acro.toUpperCase(), phra.toUpperCase());
+                                editor.apply();
+
+                                Toast.makeText(getActivity(),"Updated: " + acro.toUpperCase(),Toast.LENGTH_SHORT).show();
+                                acronym.setText("");
+                                phrase.setText("");
+                                updateCurrentAbbreviations();
+
+                            }
+                        });
+                        builder.show();
+                    } else {
+                        //New Abbreviation
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(acro.toUpperCase(), phra.toUpperCase());
+                        editor.apply();
+
+                        Toast.makeText(getActivity(),"Added: " + acro,Toast.LENGTH_SHORT).show();
+                        acronym.setText("");
+                        phrase.setText("");
+                        updateCurrentAbbreviations();
+                    }
                 }
             }
 
@@ -306,9 +369,9 @@ public class SettingsFragment extends Fragment {
     public void updateCurrentAbbreviations() {
         table.removeAllViews();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
-        Map<String, ?> keys = sharedPreferences.getAll();
+        TreeMap<String, ?> keys = new TreeMap<String, Object>(sharedPreferences.getAll());
 
-        for(Map.Entry<String,?> entry : keys.entrySet()){
+        for (Map.Entry<String, ?> entry : keys.entrySet()) {
             String abbreviations = entry.getKey();
             String phrases = entry.getValue().toString();
 
