@@ -39,9 +39,9 @@ public class HomeFragment extends Fragment {
     private TextToSpeech mTTS;
     private TextView display;
     private Button buttonScan;
-    private int[] arrButton = {R.id.button24,R.id.button25,R.id.button26,R.id.button27,R.id.button28,
+    private int[] arrButton = {R.id.textView4, R.id.button24,R.id.button25,R.id.button26,R.id.button27,R.id.button28,
                                R.id.button23,R.id.button22,R.id.button29,R.id.button21,R.id.button20,
-                               R.id.button24,R.id.button25,R.id.button26,R.id.button27,R.id.button28,
+                               R.id.textView4, R.id.button24,R.id.button25,R.id.button26,R.id.button27,R.id.button28,
                                R.id.button23,R.id.button22,R.id.button29,R.id.button21,R.id.button20};
     public int current = 0;
     public boolean scanning = false;
@@ -178,6 +178,21 @@ public class HomeFragment extends Fragment {
                 abbreviation((String) display.getText());
             }
         });
+
+        display.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(scanning) {
+                    timer.cancel();
+                    scanning = false;
+                    resetColour(current);
+                    current = 0;
+                    ((MainActivity) getActivity()).drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                }
+
+                openSpeak();
+            }
+        });
         */
 
         root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -200,20 +215,7 @@ public class HomeFragment extends Fragment {
         display.setBackgroundColor(Color.WHITE);
         display.setTextColor(Color.BLACK);
 
-        display.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(scanning) {
-                    timer.cancel();
-                    scanning = false;
-                    resetColour(current);
-                    current = 0;
-                    ((MainActivity) getActivity()).drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-                }
 
-                openSpeak();
-            }
-        });
 
         setNewTheme();
 
@@ -227,7 +229,7 @@ public class HomeFragment extends Fragment {
 
                     //buttonScan.setText("SELECT");
                     scanning = true;
-                    timer = new CountDownTimer(20*homeSpeed, homeSpeed) {
+                    timer = new CountDownTimer(22*homeSpeed, homeSpeed) {
                         public void onFinish() {
                             // When timer is finished
                             // Execute your code here
@@ -241,22 +243,40 @@ public class HomeFragment extends Fragment {
 
                         public void onTick(long millisUntilFinished) {
                             // millisUntilFinished    The amount of time until finished.
-                            if (current < 5 || (9 < current && current < 15)) {
+
+                            //Make textview blue
+                            if(current == 0 || current == 11) {
+                                TextView currTextView = (TextView) root.findViewById(arrButton[current]);
+                                currTextView.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#3EB0A6")));
+                                mTTS.speak("SPEAK", TextToSpeech.QUEUE_FLUSH, null);
+
+                                //Make imagebuton not blue
+                                if(current == 11) {
+                                    ImageButton prevButton = (ImageButton) root.findViewById(arrButton[current - 1]);
+                                    prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
+                                }
+                            }
+                            //Make buttons blue
+                            else if (current < 6 || (11 < current && current < 17)) {
                                 Button currButton = (Button) root.findViewById(arrButton[current]);
                                 currButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#3EB0A6")));
                                 mTTS.speak((String)currButton.getContentDescription(), TextToSpeech.QUEUE_FLUSH, null);
-                                if (current != 0 && current != 10) {
+
+                                //Make textview not blue
+                                if(current == 1 || current == 12) {
+                                    TextView prevTextView = (TextView) root.findViewById(arrButton[current - 1]);
+                                    prevTextView.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+                                }
+                                //Make previous button not blue
+                                else if (current != 1 && current != 12) {
                                     Button prevButton = (Button) root.findViewById(arrButton[current - 1]);
-                                    prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
-                                } else if(current == 10) {
-                                    ImageButton prevButton = (ImageButton) root.findViewById(arrButton[current - 1]);
                                     prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
                                 }
                             } else {
                                 ImageButton currButton = (ImageButton) root.findViewById(arrButton[current]);
                                 currButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#3EB0A6")));
                                 mTTS.speak((String)currButton.getContentDescription(), TextToSpeech.QUEUE_FLUSH, null);
-                                if (current == 5 || current == 15) {
+                                if (current == 6 || current == 17) {
                                     Button prevButton = (Button) root.findViewById(arrButton[current - 1]);
                                     prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
                                 } else {
@@ -274,40 +294,43 @@ public class HomeFragment extends Fragment {
                     //buttonScan.setText("SCAN");
                     int temp = current-1;
 
-                    if(temp > 9) {
-                        temp = temp - 10;
+                    if(temp > 10) {
+                        temp = temp - 11;
                     }
                     resetColour(current);
                     current = 0;
                     switch(temp){
                         case 0:
-                            openABCD();
+                            openSpeak();
                             break;
                         case 1:
-                            openEFGH();
+                            openABCD();
                             break;
                         case 2:
-                            openIJKLMN();
+                            openEFGH();
                             break;
                         case 3:
-                            openOPQRST();
+                            openIJKLMN();
                             break;
                         case 4:
-                            openUVWXYZ();
+                            openOPQRST();
                             break;
                         case 5:
-                            openSpace();
+                            openUVWXYZ();
                             break;
                         case 6:
-                            openBackspace();
+                            openSpace();
                             break;
                         case 7:
-                            abbreviation((String) homeDisplay);
+                            openBackspace();
                             break;
                         case 8:
-                            openNumPunc();
+                            abbreviation((String) homeDisplay);
                             break;
                         case 9:
+                            openNumPunc();
+                            break;
+                        case 10:
                             openClear();
                             break;
                     }
@@ -414,8 +437,11 @@ public class HomeFragment extends Fragment {
             display.setText(homeDisplay);
         }
     }
-    public void resetColour(int current){
-        if(current < 6 || (10 < current && current < 16)){
+    public void resetColour(int current) {
+        if(current == 1 || current == 12) {
+            TextView prevTextView = (TextView) root.findViewById(arrButton[current - 1]);
+            prevTextView.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+        } else if(current < 7 || (12 < current && current < 18)) {
             Button prevButton = (Button) root.findViewById(arrButton[current - 1]);
             prevButton.setBackgroundTintList(ColorStateList.valueOf(buttonColor));
         }
