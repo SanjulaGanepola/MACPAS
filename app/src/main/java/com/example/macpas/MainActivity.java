@@ -1,5 +1,6 @@
 package com.example.macpas;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -31,11 +33,14 @@ import static com.example.macpas.R.style.BlueOnYellowTheme;
 import static com.example.macpas.R.style.YellowOnBlueTheme;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 import static com.example.macpas.R.style.YellowOnBlueTheme;
 
-//MACPAS v1.2.2
+//MACPAS v1.2.3
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     int speed = 3000;
@@ -44,8 +49,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //int currentFragment;
     DrawerLayout drawer;
 
+    public TextToSpeech mTTS;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        mTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = mTTS.setLanguage(Locale.ENGLISH);
+
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("TTS", "Language not supported");
+                    } else {
+                    }
+                } else {
+                    Log.e("TTS", "Initialization failed");
+                }
+            }
+        });
+
         saveAdminData();
         readSettings();
 
@@ -85,6 +110,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        mTTS.stop();
+        /*
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = this.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(this);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        drawer.requestFocus();
+        */
+
         // currentFragment = menuItem.getItemId();
         displayView(menuItem.getItemId());
 
