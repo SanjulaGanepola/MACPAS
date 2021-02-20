@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TableLayout;
@@ -27,6 +28,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -68,30 +70,25 @@ public class SettingsFragment extends Fragment {
     private RadioButton by;
     private RadioButton yb;
 
-    private Toolbar tb;
+    private ImageButton ham;
+
+    private DrawerLayout d;
+
     
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.fragment_settings, container, false);
 
-//        tb = (Toolbar) root.findViewById(R.id.toolbar3);
-//        ((AppCompatActivity) getActivity()).setSupportActionBar(tb);
+        ham = (ImageButton) root.findViewById(R.id.ham_id);
+        d = ((MainActivity) getActivity()).drawer;
 
-        //((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //((MainActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-
-//        tb.setNavigationIcon(getResources().getDrawable(R.drawable.ic_macpas_logo));
-//        tb.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //What to do on back clicked
-//
-//            }
-//        });
-
-
+        ham.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                d.openDrawer(Gravity.LEFT);
+            }
+        });
 
         defaultColor = (RadioButton) root.findViewById(R.id.radioButton4);
         wb = (RadioButton) root.findViewById(R.id.radioButton3);

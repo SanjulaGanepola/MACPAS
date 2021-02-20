@@ -27,7 +27,7 @@ public class TutorialPage3 extends Fragment {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            mTTSTutorial.speak("Subscreen Scanning. Tap the screen to start scanning. Observe scanning and listen to the audio cues. Tap the screen again to select the highlighted button.", TextToSpeech.QUEUE_FLUSH, null);
+            mTTSTutorial.speak("Subscreen Scanning. Wait 1 second for the screen to start auto-scanning. Or tap the screen to manually start scanning. Observe scanning and listen to the audio cues. Tap the screen again to select the highlighted button.", TextToSpeech.QUEUE_FLUSH, null);
             }
         });
 

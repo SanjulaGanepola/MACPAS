@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     int currentTheme = 1;
     public StringBuilder currentDisplay = new StringBuilder("");
     //int currentFragment;
-    DrawerLayout drawer;
+    public DrawerLayout drawer;
 
     public TextToSpeech mTTS;
 
