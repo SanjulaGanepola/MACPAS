@@ -102,7 +102,10 @@
                         android:layout_weight="1"
                         android:contentDescription="c"
                         android:text="C"
-                        android:textSize="120sp" />
+                        app:autoSizeMaxTextSize="120sp"
+                        app:autoSizeMinTextSize="10sp"
+                        app:autoSizeStepGranularity="1sp"
+                        app:autoSizeTextType="uniform" />
 
                     <Button
                         android:id="@+id/button3"

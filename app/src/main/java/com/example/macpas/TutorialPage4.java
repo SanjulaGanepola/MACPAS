@@ -27,7 +27,7 @@ public class TutorialPage4 extends Fragment {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            mTTSTutorial.speak("Text-to-Speech. Adjust phone volume to appropriate levels. Tap the message window to activate speech.", TextToSpeech.QUEUE_FLUSH, null);
+            mTTSTutorial.speak("Text-to-Speech. Adjust phone volume to appropriate levels. Tap the screen to start scanning. Tap again when message window is highlighted to activate speech", TextToSpeech.QUEUE_FLUSH, null);
             }
         });
 
