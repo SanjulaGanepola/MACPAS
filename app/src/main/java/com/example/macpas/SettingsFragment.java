@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TableLayout;
@@ -58,12 +59,11 @@ public class SettingsFragment extends Fragment {
     private TextInputEditText acronym;
     private TextInputEditText phrase;
     private Button save;
-    private TableLayout table;
     private ToggleButton toggle;
     private TextInputLayout phraseLayout;
+    private LinearLayout current;
 
     private View root;
-    private int checkedButton = 0;
 
     private RadioButton defaultColor;
     private RadioButton wb;
@@ -95,7 +95,8 @@ public class SettingsFragment extends Fragment {
         by = (RadioButton) root.findViewById(R.id.radioButton2);
         yb = (RadioButton) root.findViewById(R.id.radioButton);
 
-        table = (TableLayout) root.findViewById(R.id.table_id);
+        current = (LinearLayout) root.findViewById(R.id.current_id);
+
         updateCurrentAbbreviations();
 
         acronym = (TextInputEditText) root.findViewById(R.id.acronym_id);
@@ -364,7 +365,7 @@ public class SettingsFragment extends Fragment {
     }
 
     public void updateCurrentAbbreviations() {
-        table.removeAllViews();
+        current.removeAllViews();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
         TreeMap<String, ?> keys = new TreeMap<String, Object>(sharedPreferences.getAll());
 
@@ -372,9 +373,15 @@ public class SettingsFragment extends Fragment {
             String abbreviations = entry.getKey();
             String phrases = entry.getValue().toString();
 
-            TableRow row = new TableRow(getActivity());
-            row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-            row.setWeightSum(3);
+
+            LinearLayout row = new LinearLayout(getActivity());
+            row.setOrientation(LinearLayout.HORIZONTAL);
+
+            float scale = getResources().getDisplayMetrics().density;
+            int dpAsPixels = (int) (10*scale + 0.5f);
+
+            row.setPadding(dpAsPixels,0, dpAsPixels,0);
+            row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
 
             TextView a = new TextView(getActivity());
             TableRow.LayoutParams lp = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.5f);
@@ -387,11 +394,9 @@ public class SettingsFragment extends Fragment {
 
             row.addView(a);
             row.addView(p);
-            table.addView(row);
-        }
 
-        //currentAbbreviations.setText(abbreviations.substring(0, abbreviations.length() - 1));
-        //currentPhrases.setText(phrases.substring(0, phrases.length() - 1));
+            current.addView(row);
+        }
     }
 
     public void clearFocusHideKeyboard() {

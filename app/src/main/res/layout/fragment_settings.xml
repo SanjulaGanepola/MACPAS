@@ -298,6 +298,7 @@
                     android:src="@android:drawable/divider_horizontal_bright" />
 
                 <LinearLayout
+                    android:id="@+id/current_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.8"
@@ -311,13 +312,6 @@
                         android:text="Current Abbreviations"
                         android:textColor="#008577"
                         android:textSize="18sp" />
-
-                    <TableLayout
-                        android:id="@+id/table_id"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="10sp"
-                        android:paddingLeft="10sp" />
 
                 </LinearLayout>
             </LinearLayout>
