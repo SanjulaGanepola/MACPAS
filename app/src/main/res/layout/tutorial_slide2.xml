@@ -125,7 +125,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1.3"
-            android:text="Space - Inserts a space\nBackspace - Removes a character\nAbbreviations - Expands phrase (TY* = THANK YOU)\nNumbers/Punctuations - Opens its subscreen\nClear - Clears message window"
+            android:text="Space - Inserts a space\nBackspace - Removes a character\nAbbreviations - Expands phrase \n(TY* = THANK YOU)\nNumbers/Punctuations - Opens its subscreen\nClear - Clears message window"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             app:autoSizeMaxTextSize="16sp"

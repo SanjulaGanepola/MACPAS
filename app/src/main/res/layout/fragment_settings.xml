@@ -57,7 +57,7 @@
                         android:foregroundTint="#F1F1F1"
                         android:paddingStart="10sp"
                         android:paddingTop="15sp"
-                        android:text="Settings"
+                        android:text="Back"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -262,24 +262,21 @@
                         android:layout_weight="0.1"
                         android:orientation="horizontal">
 
-                        <ToggleButton
-                            android:id="@+id/toggleButton2"
+                        <Button
+                            android:id="@+id/remove_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10sp"
                             android:layout_weight="1"
-                            android:text="ToggleButton"
-                            android:textOff="ADD"
-                            android:textOn="REMOVE" />
+                            android:text="Remove" />
 
                         <Button
-                            android:id="@+id/button30"
+                            android:id="@+id/add_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10sp"
                             android:layout_marginRight="10sp"
                             android:layout_weight="1"
-                            android:text="Save" />
+                            android:text="Add" />
                     </LinearLayout>
 
                 </LinearLayout>

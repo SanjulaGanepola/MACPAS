@@ -36,7 +36,7 @@
             android:id="@+id/layout_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.4"
+            android:layout_weight="0.2"
             android:background="#FFFFFF">
 
             <TextView
@@ -45,14 +45,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.4"
                 android:cursorVisible="false"
+                android:ellipsize="end"
                 android:gravity="center_vertical|left"
                 android:hint="SELECT LETTER"
                 android:includeFontPadding="true"
+                android:maxLines="1"
                 android:paddingLeft="10sp"
                 android:textAllCaps="true"
-                android:textSize="40sp"
-                android:ellipsize="end"
-                android:maxLines="1"/>
+                android:textSize="40sp" />
 
         </LinearLayout>
 
@@ -80,7 +80,10 @@
                         android:layout_weight="1"
                         android:contentDescription="a"
                         android:text="@string/a_b_c_d"
-                        android:textSize="40sp" />
+                        app:autoSizeMaxTextSize="40sp"
+                        app:autoSizeMinTextSize="5sp"
+                        app:autoSizeStepGranularity="1sp"
+                        app:autoSizeTextType="uniform" />
 
                     <Button
                         android:id="@+id/button25"
@@ -89,7 +92,10 @@
                         android:layout_weight="1"
                         android:contentDescription="e"
                         android:text="@string/e_f_g_h"
-                        android:textSize="40sp" />
+                        app:autoSizeMaxTextSize="40sp"
+                        app:autoSizeMinTextSize="5sp"
+                        app:autoSizeStepGranularity="1sp"
+                        app:autoSizeTextType="uniform" />
 
                     <Button
                         android:id="@+id/button26"
@@ -98,7 +104,10 @@
                         android:layout_weight="1"
                         android:contentDescription="i"
                         android:text="@string/i_j_k_l_m_n"
-                        android:textSize="40sp" />
+                        app:autoSizeMaxTextSize="40sp"
+                        app:autoSizeMinTextSize="5sp"
+                        app:autoSizeStepGranularity="1sp"
+                        app:autoSizeTextType="uniform" />
 
                     <Button
                         android:id="@+id/button27"
@@ -107,7 +116,10 @@
                         android:layout_weight="1"
                         android:contentDescription="o"
                         android:text="@string/o_p_q_r_s_t"
-                        android:textSize="40sp" />
+                        app:autoSizeMaxTextSize="40sp"
+                        app:autoSizeMinTextSize="5sp"
+                        app:autoSizeStepGranularity="1sp"
+                        app:autoSizeTextType="uniform" />
 
                     <Button
                         android:id="@+id/button28"
@@ -116,7 +128,10 @@
                         android:layout_weight="1"
                         android:contentDescription="u"
                         android:text="@string/u_v_w_x_y_z"
-                        android:textSize="40sp" />
+                        app:autoSizeMaxTextSize="40sp"
+                        app:autoSizeMinTextSize="5sp"
+                        app:autoSizeStepGranularity="1sp"
+                        app:autoSizeTextType="uniform" />
 
                 </LinearLayout>
 
@@ -124,7 +139,7 @@
                     android:id="@+id/layout_bottom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.2"
                     android:orientation="horizontal">
 
                     <ImageButton

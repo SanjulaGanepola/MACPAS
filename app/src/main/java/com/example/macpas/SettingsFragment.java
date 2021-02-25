@@ -1,16 +1,12 @@
 package com.example.macpas;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -19,33 +15,19 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
-import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-import androidx.appcompat.widget.Toolbar;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
-import static com.example.macpas.R.style.AppTheme;
-import static com.example.macpas.R.style.DefaultColor;
-import static com.example.macpas.R.style.WhiteOnBlackTheme;
-import static com.example.macpas.R.style.BlueOnYellowTheme;
-import static com.example.macpas.R.style.YellowOnBlueTheme;
-
-import com.example.macpas.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Map;
-import java.util.SortedMap;
 import java.util.TreeMap;
 
 public class SettingsFragment extends Fragment {
@@ -58,8 +40,8 @@ public class SettingsFragment extends Fragment {
 
     private TextInputEditText acronym;
     private TextInputEditText phrase;
-    private Button save;
-    private ToggleButton toggle;
+    private Button add;
+    private Button remove;
     private TextInputLayout phraseLayout;
     private LinearLayout current;
 
@@ -101,65 +83,14 @@ public class SettingsFragment extends Fragment {
 
         acronym = (TextInputEditText) root.findViewById(R.id.acronym_id);
         phrase = (TextInputEditText) root.findViewById(R.id.phrase_id);
-        save = (Button) root.findViewById(R.id.button30);
-        toggle = (ToggleButton) root.findViewById(R.id.toggleButton2);
+        add = (Button) root.findViewById(R.id.add_id);
+        remove = (Button) root.findViewById(R.id.remove_id);
         phraseLayout = (TextInputLayout) root.findViewById(R.id.phraseLayout_id);
 
-        toggle.setOnClickListener(new View.OnClickListener() {
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clearFocusHideKeyboard();
-
-                if (toggle.isChecked()) {
-                    phrase.setFocusable(false);
-                    phrase.setEnabled(false);
-                    phrase.setCursorVisible(false);
-                    phrase.setFocusableInTouchMode(false);
-
-                    //phraseLayout.setBoxCornerRadii(4,4,4,4);
-                    //phraseLayout.setBackgroundColor(Color.GRAY);
-                    phrase.setText("");
-                    phraseLayout.setHint("");
-                } else {
-                    phrase.setFocusable(true);
-                    phrase.setEnabled(true);
-                    phrase.setCursorVisible(true);
-                    phrase.setFocusableInTouchMode(true);
-                    phraseLayout.setHint("Phrase");
-
-                    //phraseLayout.setBackgroundColor(0);
-                    //phrase.setKeyListener(null);
-                }
-            }
-        });
-
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            clearFocusHideKeyboard();
-
-            if(toggle.isChecked()) {
-                //REMOVE
-                String acro = acronym.getText().toString();
-
-                if(acro.equals(null) || acro.equals("")) {
-                    Toast.makeText(getActivity(),"Enter Acronym",Toast.LENGTH_SHORT).show();
-                } else {
-                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                    if(sharedPreferences.contains(acro.toUpperCase())){
-                        Toast.makeText(getActivity(),"Removed: " + acro,Toast.LENGTH_SHORT).show();
-                        editor.remove(acro.toUpperCase());
-                        editor.apply();
-                        acronym.setText("");
-                        updateCurrentAbbreviations();
-                    } else {
-                        Toast.makeText(getActivity(),acro + " Not Found",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            } else {
-                //ADD
                 String acro = acronym.getText().toString();
                 String phra = phrase.getText().toString();
 
@@ -217,8 +148,31 @@ public class SettingsFragment extends Fragment {
                     }
                 }
             }
+        });
 
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearFocusHideKeyboard();
+                String acro = acronym.getText().toString();
 
+                if(acro.equals(null) || acro.equals("")) {
+                    Toast.makeText(getActivity(),"Enter Acronym",Toast.LENGTH_SHORT).show();
+                } else {
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("sharedPrefs", getActivity().MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                    if(sharedPreferences.contains(acro.toUpperCase())){
+                        Toast.makeText(getActivity(),"Removed: " + acro,Toast.LENGTH_SHORT).show();
+                        editor.remove(acro.toUpperCase());
+                        editor.apply();
+                        acronym.setText("");
+                        phrase.setText("");
+                        updateCurrentAbbreviations();
+                    } else {
+                        Toast.makeText(getActivity(),acro + " Not Found",Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
         
