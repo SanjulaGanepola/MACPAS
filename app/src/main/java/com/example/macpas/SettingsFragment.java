@@ -334,7 +334,7 @@ public class SettingsFragment extends Fragment {
             int dpAsPixels = (int) (10*scale + 0.5f);
 
             row.setPadding(dpAsPixels,0, dpAsPixels,0);
-            row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
+            row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
             TextView a = new TextView(getActivity());
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f);

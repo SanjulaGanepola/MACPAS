@@ -27,7 +27,7 @@ public class TutorialPage7 extends Fragment {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            mTTSTutorial.speak("Settings Screen, Abbreviations. Toggle between adding and removing abbreviations. Add abbreviations by typing acronym and phrase. Remove abbreviations by typing acronym. Press save to apply changes. View all current abbreviations.", TextToSpeech.QUEUE_FLUSH, null);
+            mTTSTutorial.speak("Settings Screen, Abbreviations. Add abbreviations by typing acronym and phrase. Remove abbreviations by typing acronym. Press the button with the desired action. Scroll down to view all current abbreviations", TextToSpeech.QUEUE_FLUSH, null);
             }
         });
 

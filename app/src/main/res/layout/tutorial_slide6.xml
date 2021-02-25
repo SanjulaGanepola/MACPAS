@@ -63,12 +63,12 @@
                     android:layout_height="0dp"
                     android:layout_marginTop="32dp"
                     android:layout_weight="0.05"
-                    android:src="@drawable/settings_page1"
+                    android:src="@drawable/settings_page_1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@drawable/settings_page1" />
+                    tools:srcCompat="@drawable/settings_page_1" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
