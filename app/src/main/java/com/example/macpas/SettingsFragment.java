@@ -338,11 +338,11 @@ public class SettingsFragment extends Fragment {
             row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
 
             TextView a = new TextView(getActivity());
-            TableRow.LayoutParams lp = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.5f);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.5f);
             a.setText(abbreviations);
             a.setLayoutParams(lp);
             TextView p = new TextView(getActivity());
-            lp = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2.5f);
+            lp = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 2.5f);
             p.setText(phrases);
             p.setLayoutParams(lp);
 

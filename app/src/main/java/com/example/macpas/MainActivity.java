@@ -40,7 +40,7 @@ import java.util.Locale;
 
 import static com.example.macpas.R.style.YellowOnBlueTheme;
 
-//MACPAS v1.2.3
+//MACPAS v1.2.4
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     int speed = 3000;

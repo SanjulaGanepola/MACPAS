@@ -4,12 +4,15 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -23,15 +26,12 @@ public class TutorialFragment extends Fragment {
 
     private static final int NUM_PAGES = 7;
 
-    /**
-     * The pager widget, which handles animation and allows swiping horizontally to access previous
-     * and next wizard steps.
-     */
-    private ViewPager2 viewPager;
+    private ImageButton ham;
 
-    /**
-     * The pager adapter, which provides the pages to the view pager widget.
-     */
+    private DrawerLayout d;
+
+
+    private ViewPager2 viewPager;
     private FragmentStateAdapter pagerAdapter;
 
     private TextToSpeech mTTSTutorial;
@@ -50,6 +50,16 @@ public class TutorialFragment extends Fragment {
         ((ScreenSlidePagerAdapter) pagerAdapter).addFragment(new TutorialPage5());
         ((ScreenSlidePagerAdapter) pagerAdapter).addFragment(new TutorialPage6());
         ((ScreenSlidePagerAdapter) pagerAdapter).addFragment(new TutorialPage7());
+
+
+        d = ((MainActivity) getActivity()).drawer;
+        ham = (ImageButton) root.findViewById(R.id.ham_id);
+        ham.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                d.openDrawer(Gravity.LEFT);
+            }
+        });
 
         viewPager.setAdapter(pagerAdapter);
 
