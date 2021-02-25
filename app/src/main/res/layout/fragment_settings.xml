@@ -310,6 +310,12 @@
                         android:textColor="#008577"
                         android:textSize="18sp" />
 
+                    <LinearLayout
+                        android:id="@+id/currentList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"></LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

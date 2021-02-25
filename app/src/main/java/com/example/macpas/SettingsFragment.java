@@ -15,7 +15,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -77,7 +76,7 @@ public class SettingsFragment extends Fragment {
         by = (RadioButton) root.findViewById(R.id.radioButton2);
         yb = (RadioButton) root.findViewById(R.id.radioButton);
 
-        current = (LinearLayout) root.findViewById(R.id.current_id);
+        current = (LinearLayout) root.findViewById(R.id.currentList);
 
         updateCurrentAbbreviations();
 
@@ -338,7 +337,7 @@ public class SettingsFragment extends Fragment {
             row.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
 
             TextView a = new TextView(getActivity());
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.5f);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.5f);
             a.setText(abbreviations);
             a.setLayoutParams(lp);
             TextView p = new TextView(getActivity());
